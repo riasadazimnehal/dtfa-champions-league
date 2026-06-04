@@ -3,123 +3,136 @@
 <head>
 <meta charset="UTF-8">
 <title>DTFA Champions League</title>
-<link rel="stylesheet" href="style.css">
 
 <style>
-/* FULL SCREEN BACKGROUND */
-body {
-  margin: 0;
-  height: 100vh;
-  overflow: hidden;
-  font-family: Arial, sans-serif;
-  color: white;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial;
 }
 
-/* ANIMATED BACKGROUND */
-.bg {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(-45deg, #0f172a, #1e293b, #0b3d2e, #111827);
-  background-size: 400% 400%;
-  animation: gradientMove 10s ease infinite;
-  z-index: -1;
+/* STADIUM BACKGROUND */
+body{
+  height:100vh;
+  overflow:hidden;
+  color:white;
 }
 
-@keyframes gradientMove {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
+/* stadium image background */
+.bg{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2') center/cover no-repeat;
+  filter:brightness(0.35);
+  z-index:-2;
+}
+
+/* dark overlay */
+.overlay{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:linear-gradient(180deg,rgba(0,0,0,0.4),rgba(0,0,0,0.8));
+  z-index:-1;
 }
 
 /* CENTER CONTENT */
-.container {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+.container{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
 }
 
-/* LOGO */
-.logo {
-  font-size: 80px;
-  font-weight: bold;
-  letter-spacing: 4px;
-  text-shadow: 0 0 20px rgba(34,197,94,0.8);
-  animation: glow 2s infinite alternate;
+/* LOGO ANIMATION */
+.logo{
+  font-size:80px;
+  font-weight:bold;
+  letter-spacing:4px;
+  color:#22c55e;
+  text-shadow:0 0 20px rgba(34,197,94,0.8);
+  animation:glow 2s infinite alternate;
 }
 
-@keyframes glow {
-  from {text-shadow: 0 0 10px #22c55e;}
-  to {text-shadow: 0 0 30px #22c55e;}
+@keyframes glow{
+  from{transform:scale(1); text-shadow:0 0 10px #22c55e;}
+  to{transform:scale(1.05); text-shadow:0 0 30px #22c55e;}
 }
 
 /* TITLE */
-h2 {
-  margin-top: 10px;
-  font-size: 22px;
-  opacity: 0.9;
+h2{
+  margin-top:10px;
+  font-size:22px;
+  opacity:0.9;
+  letter-spacing:2px;
 }
 
-/* SUB TEXT */
-p {
-  opacity: 0.7;
+p{
+  opacity:0.7;
+  margin-top:5px;
 }
 
-/* BUTTON */
-.visit-btn {
-  margin-top: 40px;
-  padding: 15px 30px;
-  background: #22c55e;
-  color: white;
-  text-decoration: none;
-  border-radius: 12px;
-  font-size: 18px;
-  transition: 0.3s;
+/* VISIT BUTTON */
+.btn{
+  margin-top:40px;
+  padding:15px 35px;
+  background:#22c55e;
+  color:white;
+  text-decoration:none;
+  border-radius:12px;
+  font-size:18px;
+  transition:0.3s;
+  box-shadow:0 0 15px rgba(34,197,94,0.4);
 }
 
-.visit-btn:hover {
-  transform: scale(1.1);
-  background: #16a34a;
+.btn:hover{
+  transform:scale(1.1);
+  background:#16a34a;
 }
 
-/* FLOAT BALL EFFECT */
-.ball {
-  position: absolute;
-  width: 60px;
-  height: 60px;
-  background: url('https://upload.wikimedia.org/wikipedia/commons/d/d3/Soccerball.svg');
-  background-size: cover;
-  opacity: 0.2;
-  animation: float 8s infinite linear;
+/* floating lights */
+.light{
+  position:absolute;
+  width:10px;
+  height:10px;
+  background:#22c55e;
+  border-radius:50%;
+  box-shadow:0 0 20px #22c55e;
+  animation:float 6s infinite linear;
 }
 
-@keyframes float {
-  0% {transform: translateY(0px) rotate(0deg);}
-  50% {transform: translateY(-100px) rotate(180deg);}
-  100% {transform: translateY(0px) rotate(360deg);}
+@keyframes float{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-120px);}
+  100%{transform:translateY(0);}
 }
 </style>
+
 </head>
 
 <body>
 
 <div class="bg"></div>
+<div class="overlay"></div>
 
-<!-- floating balls -->
-<div class="ball" style="top:10%; left:20%;"></div>
-<div class="ball" style="top:60%; left:70%;"></div>
-<div class="ball" style="top:30%; left:80%;"></div>
+<!-- floating lights -->
+<div class="light" style="top:20%; left:10%;"></div>
+<div class="light" style="top:60%; left:80%;"></div>
+<div class="light" style="top:40%; left:50%;"></div>
 
 <div class="container">
 
   <div class="logo">🏆 DTFA</div>
-  <h2>DHAKA TURF FOOTBALL ASSOCIATION</h2>
-  <p>Welcome to Champions League</p>
 
-  <a class="visit-btn" href="visit.html">VISIT</a>
+  <h2>CHAMPIONS LEAGUE</h2>
+
+  <p>DHAKA TURF FOOTBALL ASSOCIATION</p>
+
+  <a class="btn" href="visit.html">ENTER</a>
 
 </div>
 
