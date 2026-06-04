@@ -20,109 +20,83 @@ body{
 /* HEADER */
 .header{
   text-align:center;
-  padding:30px 10px;
+  padding:40px 10px;
 }
 
 .header h1{
-  font-size:32px;
+  font-size:34px;
+  letter-spacing:2px;
 }
 
 .header p{
   opacity:0.7;
 }
 
-/* TEAM BUTTONS */
-.teams{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:15px;
-  margin:20px;
+/* GRID */
+.container{
+  width:90%;
+  margin:40px auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
 }
 
-/* TEAM CARD (ANIMATION FIXED) */
-.team-btn{
-  padding:12px 22px;
-  border-radius:20px;
+/* TEAM CARD */
+.card{
   background:rgba(255,255,255,0.06);
-  border:1px solid rgba(255,255,255,0.2);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:18px;
+  padding:25px;
+  text-align:center;
   cursor:pointer;
-  transition:0.3s;
-  animation:float 3s ease-in-out infinite;
+  transition:0.4s;
+  backdrop-filter:blur(10px);
   position:relative;
+  overflow:hidden;
 }
 
-.team-btn:hover{
-  background:#22c55e;
-  transform:scale(1.1);
-  box-shadow:0 0 20px rgba(34,197,94,0.4);
+.card:hover{
+  transform:translateY(-10px) scale(1.05);
+  background:rgba(34,197,94,0.15);
+  box-shadow:0 0 25px rgba(34,197,94,0.3);
+}
+
+/* LOGO */
+.logo{
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  margin:auto;
+  overflow:hidden;
+  border:2px solid #22c55e;
+  animation:float 3s ease-in-out infinite;
+}
+
+.logo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
 @keyframes float{
   0%{transform:translateY(0);}
-  50%{transform:translateY(-6px);}
+  50%{transform:translateY(-8px);}
   100%{transform:translateY(0);}
 }
 
-/* PLAYER SECTION */
-.players{
-  display:none;
-  width:90%;
-  margin:30px auto;
-}
-
-.active{
-  display:block;
-}
-
-/* GRID */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:20px;
-}
-
-/* PLAYER CARD */
-.card{
-  background:rgba(255,255,255,0.06);
-  border:1px solid rgba(255,255,255,0.15);
-  border-radius:15px;
-  padding:20px;
-  text-align:center;
-  backdrop-filter:blur(10px);
-  transition:0.3s;
-}
-
-.card:hover{
-  transform:scale(1.05);
-  background:rgba(34,197,94,0.15);
-}
-
-/* AVATAR */
-.avatar{
-  width:70px;
-  height:70px;
-  border-radius:50%;
-  overflow:hidden;
-  margin:auto;
-  border:2px solid #22c55e;
-}
-
-.avatar img{
-  width:100%;
-  height:100%;
-}
-
-/* INFO */
+/* NAME */
 .name{
-  margin-top:10px;
+  margin-top:15px;
+  font-size:18px;
   font-weight:bold;
+  letter-spacing:1px;
 }
 
-.info{
-  font-size:14px;
-  opacity:0.8;
-  margin-top:5px;
+/* BUTTON STYLE TEXT */
+.open{
+  margin-top:10px;
+  font-size:12px;
+  opacity:0.7;
 }
 
 /* BACK */
@@ -142,91 +116,38 @@ body{
 
 <div class="header">
   <h1>🏆 DTFA CHAMPIONS LEAGUE</h1>
-  <p>Select Team</p>
+  <p>Select Your Team</p>
 </div>
 
-<!-- TEAMS -->
-<div class="teams">
-  <div class="team-btn" onclick="show('A')">Team A</div>
-  <div class="team-btn" onclick="show('B')">Team B</div>
-  <div class="team-btn" onclick="show('C')">Team C</div>
-  <div class="team-btn" onclick="show('D')">Team D</div>
-</div>
+<div class="container">
 
-<!-- TEAM A -->
-<div id="A" class="players active">
-  <div class="grid">
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=1"></div><div class="name">Player A1</div><div class="info">Age: 22 | Position: Forward</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=2"></div><div class="name">Player A2</div><div class="info">Age: 23 | Midfielder</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=3"></div><div class="name">Player A3</div><div class="info">Age: 21 | Defender</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=4"></div><div class="name">Player A4</div><div class="info">Age: 24 | Forward</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=5"></div><div class="name">Player A5</div><div class="info">Age: 20 | Midfielder</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=6"></div><div class="name">Player A6</div><div class="info">Age: 25 | Defender</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=7"></div><div class="name">Player A7</div><div class="info">Age: 22 | Forward</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=8"></div><div class="name">Player A8</div><div class="info">Age: 23 | Midfielder</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=9"></div><div class="name">Player A9</div><div class="info">Age: 21 | Defender</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=10"></div><div class="name">Player A10</div><div class="info">Age: 24 | Forward</div></div>
-  </div>
-</div>
+  <a href="teamA.html" class="card">
+    <div class="logo"><img src="https://i.pravatar.cc/100?img=11"></div>
+    <div class="name">TEAM A</div>
+    <div class="open">Click to view players</div>
+  </a>
 
-<!-- TEAM B -->
-<div id="B" class="players">
-  <div class="grid">
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=11"></div><div class="name">Player B1</div><div class="info">Age: 23 | Forward</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=12"></div><div class="name">Player B2</div><div class="info">Age: 25 | Midfielder</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=13"></div><div class="name">Player B3</div><div class="info">Age: 22 | Defender</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=14"></div><div class="name">Player B4</div><div class="info">Age: 24 | Forward</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=15"></div><div class="name">Player B5</div><div class="info">Age: 20 | Midfielder</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=16"></div><div class="name">Player B6</div><div class="info">Age: 26 | Defender</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=17"></div><div class="name">Player B7</div><div class="info">Age: 22 | Forward</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=18"></div><div class="name">Player B8</div><div class="info">Age: 23 | Midfielder</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=19"></div><div class="name">Player B9</div><div class="info">Age: 21 | Defender</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=20"></div><div class="name">Player B10</div><div class="info">Age: 24 | Forward</div></div>
-  </div>
-</div>
+  <a href="teamB.html" class="card">
+    <div class="logo"><img src="https://i.pravatar.cc/100?img=12"></div>
+    <div class="name">TEAM B</div>
+    <div class="open">Click to view players</div>
+  </a>
 
-<!-- TEAM C -->
-<div id="C" class="players">
-  <div class="grid">
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=21"></div><div class="name">Player C1</div><div class="info">Age: 22 | Forward</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=22"></div><div class="name">Player C2</div><div class="info">Age: 24 | Midfielder</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=23"></div><div class="name">Player C3</div><div class="info">Age: 21 | Defender</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=24"></div><div class="name">Player C4</div><div class="info">Age: 25 | Forward</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=25"></div><div class="name">Player C5</div><div class="info">Age: 23 | Midfielder</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=26"></div><div class="name">Player C6</div><div class="info">Age: 20 | Defender</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=27"></div><div class="name">Player C7</div><div class="info">Age: 22 | Forward</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=28"></div><div class="name">Player C8</div><div class="info">Age: 24 | Midfielder</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=29"></div><div class="name">Player C9</div><div class="info">Age: 21 | Defender</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=30"></div><div class="name">Player C10</div><div class="info">Age: 25 | Forward</div></div>
-  </div>
-</div>
+  <a href="teamC.html" class="card">
+    <div class="logo"><img src="https://i.pravatar.cc/100?img=13"></div>
+    <div class="name">TEAM C</div>
+    <div class="open">Click to view players</div>
+  </a>
 
-<!-- TEAM D -->
-<div id="D" class="players">
-  <div class="grid">
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=31"></div><div class="name">Player D1</div><div class="info">Age: 22 | Forward</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=32"></div><div class="name">Player D2</div><div class="info">Age: 24 | Midfielder</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=33"></div><div class="name">Player D3</div><div class="info">Age: 21 | Defender</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=34"></div><div class="name">Player D4</div><div class="info">Age: 25 | Forward</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=35"></div><div class="name">Player D5</div><div class="info">Age: 23 | Midfielder</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=36"></div><div class="name">Player D6</div><div class="info">Age: 20 | Defender</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=37"></div><div class="name">Player D7</div><div class="info">Age: 22 | Forward</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=38"></div><div class="name">Player D8</div><div class="info">Age: 24 | Midfielder</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=39"></div><div class="name">Player D9</div><div class="info">Age: 21 | Defender</div></div>
-    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=40"></div><div class="name">Player D10</div><div class="info">Age: 25 | Forward</div></div>
-  </div>
+  <a href="teamD.html" class="card">
+    <div class="logo"><img src="https://i.pravatar.cc/100?img=14"></div>
+    <div class="name">TEAM D</div>
+    <div class="open">Click to view players</div>
+  </a>
+
 </div>
 
 <a class="back" href="visit.html">⬅ Back to Menu</a>
-
-<script>
-function show(team){
-  document.querySelectorAll('.players').forEach(p=>{
-    p.classList.remove('active');
-  });
-  document.getElementById(team).classList.add('active');
-}
-</script>
 
 </body>
 </html>
