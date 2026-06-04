@@ -4,12 +4,15 @@
 <meta charset="UTF-8">
 <title>DTFA Champions League</title>
 
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
 <style>
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:Arial;
+  font-family:'Montserrat', sans-serif;
 }
 
 body{
@@ -30,9 +33,10 @@ body{
 
 .header p{
   opacity:0.7;
+  margin-top:5px;
 }
 
-/* GRID */
+/* TEAM GRID */
 .container{
   width:90%;
   margin:40px auto;
@@ -42,34 +46,44 @@ body{
 }
 
 /* TEAM CARD */
-.card{
-  background:rgba(255,255,255,0.06);
+.team-btn{
+  background:rgba(255,255,255,0.05);
   border:1px solid rgba(255,255,255,0.15);
   border-radius:18px;
   padding:25px;
   text-align:center;
   cursor:pointer;
   transition:0.4s;
-  backdrop-filter:blur(10px);
   position:relative;
   overflow:hidden;
+  animation:float 3s ease-in-out infinite;
+  text-decoration:none;
 }
 
-.card:hover{
-  transform:translateY(-10px) scale(1.05);
-  background:rgba(34,197,94,0.15);
-  box-shadow:0 0 25px rgba(34,197,94,0.3);
+/* FLOAT ANIMATION */
+@keyframes float{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-8px);}
+  100%{transform:translateY(0);}
+}
+
+/* HOVER */
+.team-btn:hover{
+  transform:translateY(-10px) scale(1.08);
+  background:rgba(255,255,255,0.10);
+  border:1px solid rgba(255,255,255,0.35);
+  box-shadow:0 0 30px rgba(255,255,255,0.15);
 }
 
 /* LOGO */
 .logo{
-  width:80px;
-  height:80px;
+  width:85px;
+  height:85px;
   border-radius:50%;
   margin:auto;
   overflow:hidden;
-  border:2px solid #22c55e;
-  animation:float 3s ease-in-out infinite;
+  border:2px solid #fff;
+  animation:spinGlow 4s linear infinite;
 }
 
 .logo img{
@@ -78,23 +92,26 @@ body{
   object-fit:cover;
 }
 
-@keyframes float{
-  0%{transform:translateY(0);}
-  50%{transform:translateY(-8px);}
-  100%{transform:translateY(0);}
+/* LOGO ANIMATION */
+@keyframes spinGlow{
+  0%{transform:rotate(0deg);}
+  100%{transform:rotate(360deg);}
 }
 
-/* NAME */
+/* TEAM NAME */
 .name{
   margin-top:15px;
-  font-size:18px;
-  font-weight:bold;
-  letter-spacing:1px;
+  font-size:17px;
+  font-weight:800;
+  color:#ffffff;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  text-shadow:0 0 10px rgba(255,255,255,0.15);
 }
 
-/* BUTTON STYLE TEXT */
-.open{
-  margin-top:10px;
+/* SUB TEXT */
+.sub{
+  margin-top:8px;
   font-size:12px;
   opacity:0.7;
 }
@@ -105,8 +122,11 @@ body{
   text-align:center;
   margin:30px;
   color:white;
-  opacity:0.7;
+  opacity:0.6;
   text-decoration:none;
+}
+.back:hover{
+  opacity:1;
 }
 </style>
 
@@ -121,28 +141,28 @@ body{
 
 <div class="container">
 
-  <a href="teamA.html" class="card">
+  <a href="teamA.html" class="team-btn">
     <div class="logo"><img src="https://i.pravatar.cc/100?img=11"></div>
-    <div class="name">TEAM A</div>
-    <div class="open">Click to view players</div>
+    <div class="name">Team A</div>
+    <div class="sub">Click to view players</div>
   </a>
 
-  <a href="teamB.html" class="card">
+  <a href="teamB.html" class="team-btn">
     <div class="logo"><img src="https://i.pravatar.cc/100?img=12"></div>
-    <div class="name">TEAM B</div>
-    <div class="open">Click to view players</div>
+    <div class="name">Team B</div>
+    <div class="sub">Click to view players</div>
   </a>
 
-  <a href="teamC.html" class="card">
+  <a href="teamC.html" class="team-btn">
     <div class="logo"><img src="https://i.pravatar.cc/100?img=13"></div>
-    <div class="name">TEAM C</div>
-    <div class="open">Click to view players</div>
+    <div class="name">Team C</div>
+    <div class="sub">Click to view players</div>
   </a>
 
-  <a href="teamD.html" class="card">
+  <a href="teamD.html" class="team-btn">
     <div class="logo"><img src="https://i.pravatar.cc/100?img=14"></div>
-    <div class="name">TEAM D</div>
-    <div class="open">Click to view players</div>
+    <div class="name">Team D</div>
+    <div class="sub">Click to view players</div>
   </a>
 
 </div>
