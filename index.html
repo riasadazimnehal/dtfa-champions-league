@@ -1,14 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>DTFA Champions League</title>
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Simple animation only for landing */
+    .fade-in {
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.9);}
+      to {opacity: 1; transform: scale(1);}
+    }
+
+    .logo {
+      font-size: 60px;
+      font-weight: bold;
+      margin-top: 80px;
+      letter-spacing: 3px;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      opacity: 0.8;
+      margin-top: 10px;
+    }
+
+    .visit-btn {
+      margin-top: 40px;
+      padding: 14px 26px;
+      background: #22c55e;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .visit-btn:hover {
+      background: #16a34a;
+    }
+  </style>
 </head>
+
 <body>
 
-<h1>🏆 DTFA Champions League</h1>
+<div class="fade-in">
 
-<a class="btn" href="tournament.html">Enter Tournament</a>
+  <!-- LOGO -->
+  <div class="logo">🏆 DTFA</div>
+
+  <!-- NAME -->
+  <h2>DHAKA TURF FOOTBALL ASSOCIATION</h2>
+
+  <!-- SUB TEXT -->
+  <p class="subtitle">Welcome to DTFA Champions League</p>
+
+  <!-- VISIT BUTTON -->
+  <a class="visit-btn" href="visit.html">Visit</a>
+
+</div>
 
 </body>
 </html>
