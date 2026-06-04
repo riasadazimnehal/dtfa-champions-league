@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>DTFA Dashboard</title>
 
-<!-- FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
@@ -17,143 +16,119 @@
 
 body{
   height:100vh;
-  background:linear-gradient(135deg,#0f172a,#111827);
-  color:white;
+  overflow:hidden;
   display:flex;
   justify-content:center;
   align-items:center;
+  background:#0b1220;
 }
 
-/* CENTER WRAPPER */
-.wrapper{
-  text-align:center;
+/* STADIUM STYLE BACKGROUND */
+body::before{
+  content:"";
+  position:absolute;
   width:100%;
+  height:100%;
+  background:url("https://images.unsplash.com/photo-1518091043644-c1d4457512c6") center/cover;
+  opacity:0.18;
+  filter:blur(2px);
+}
+
+/* DARK OVERLAY */
+.overlay{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:radial-gradient(circle at center, rgba(0,0,0,0.4), rgba(0,0,0,0.9));
+}
+
+/* MAIN PANEL */
+.panel{
+  position:relative;
+  z-index:2;
+  width:380px;
+  padding:30px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.15);
+  backdrop-filter:blur(15px);
+  text-align:center;
+  box-shadow:0 0 40px rgba(0,0,0,0.6);
+  animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
 }
 
 /* LOGO */
 .logo{
-  width:120px;
-  height:120px;
+  width:90px;
+  height:90px;
   border-radius:50%;
-  overflow:hidden;
-  border:3px solid #fff;
   margin:auto;
-  animation:float 3s ease-in-out infinite;
-  box-shadow:0 0 30px rgba(255,255,255,0.2);
+  overflow:hidden;
+  border:2px solid white;
+  box-shadow:0 0 20px rgba(255,255,255,0.2);
 }
 
 .logo img{
   width:100%;
-  height:100%;
-}
-
-@keyframes float{
-  0%{transform:translateY(0);}
-  50%{transform:translateY(-10px);}
-  100%{transform:translateY(0);}
 }
 
 /* TITLE */
 h1{
-  margin-top:20px;
-  font-size:34px;
+  margin-top:15px;
+  font-size:28px;
+  color:white;
   letter-spacing:2px;
 }
 
 p{
+  font-size:12px;
   opacity:0.7;
   margin-top:5px;
 }
 
-/* MENU GRID */
-.menu{
-  margin:40px auto 0;
+/* BUTTON GRID */
+.grid{
+  margin-top:25px;
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:18px;
-  width:320px;
+  grid-template-columns:1fr;
+  gap:12px;
 }
 
-/* CARD */
-.card{
+/* BUTTON STYLE */
+.btn{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 16px;
+  border-radius:14px;
+  text-decoration:none;
+  color:white;
   background:rgba(255,255,255,0.06);
   border:1px solid rgba(255,255,255,0.15);
-  border-radius:18px;
-  padding:18px;
-  text-decoration:none;
-  color:white;
-  text-align:left;
-  transition:0.4s;
-  backdrop-filter:blur(10px);
-  position:relative;
-  overflow:hidden;
-}
-
-.card:hover{
-  transform:translateY(-8px) scale(1.05);
-  background:rgba(34,197,94,0.12);
-  box-shadow:0 0 25px rgba(34,197,94,0.25);
-}
-
-/* ICON */
-.icon{
-  font-size:22px;
-}
-
-/* TITLE */
-.title{
-  font-size:15px;
-  font-weight:800;
-  margin-top:8px;
-  letter-spacing:1px;
-}
-
-/* SUB TEXT */
-.sub{
-  font-size:11px;
-  opacity:0.7;
-  margin-top:4px;
-}
-
-/* GLOW LINE */
-.card::before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:-100%;
-  width:100%;
-  height:100%;
-  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.1),transparent);
-  transition:0.5s;
-}
-
-.card:hover::before{
-  left:100%;
-}
-
-/* BUTTON */
-.btn{
-  display:inline-block;
-  margin-top:25px;
-  padding:10px 22px;
-  background:rgba(255,255,255,0.1);
-  border:1px solid rgba(255,255,255,0.3);
-  border-radius:25px;
-  color:white;
-  text-decoration:none;
   transition:0.3s;
+  font-weight:600;
 }
 
 .btn:hover{
-  background:#22c55e;
   transform:scale(1.05);
-  box-shadow:0 0 20px rgba(34,197,94,0.4);
+  background:rgba(34,197,94,0.15);
+  box-shadow:0 0 20px rgba(34,197,94,0.25);
+}
+
+/* ICON STYLE */
+.icon{
+  font-size:18px;
 }
 
 /* FOOTER */
 .footer{
   margin-top:20px;
-  font-size:12px;
+  font-size:11px;
   opacity:0.5;
 }
 </style>
@@ -162,7 +137,9 @@ p{
 
 <body>
 
-<div class="wrapper">
+<div class="overlay"></div>
+
+<div class="panel">
 
   <div class="logo">
     <img src="https://i.pravatar.cc/150?img=15">
@@ -171,39 +148,32 @@ p{
   <h1>DTFA</h1>
   <p>Dhaka Turf Football Association</p>
 
-  <a class="btn" href="tournaments.html">🚀 Enter League</a>
+  <div class="grid">
 
-  <!-- MENU -->
-  <div class="menu">
-
-    <a class="card" href="tournaments.html">
-      <div class="icon">🏆</div>
-      <div class="title">Tournaments</div>
-      <div class="sub">Champions League</div>
+    <a class="btn" href="tournaments.html">
+      <span>🏆 Tournaments</span>
+      <span class="icon">→</span>
     </a>
 
-    <a class="card" href="matches.html">
-      <div class="icon">📅</div>
-      <div class="title">Matches</div>
-      <div class="sub">Schedule & Results</div>
+    <a class="btn" href="matches.html">
+      <span>📅 Match Schedule</span>
+      <span class="icon">→</span>
     </a>
 
-    <a class="card" href="points.html">
-      <div class="icon">📊</div>
-      <div class="title">Point Table</div>
-      <div class="sub">Team Ranking</div>
+    <a class="btn" href="points.html">
+      <span>📊 Point Table</span>
+      <span class="icon">→</span>
     </a>
 
-    <a class="card" href="about.html">
-      <div class="icon">ℹ️</div>
-      <div class="title">About</div>
-      <div class="sub">Community Info</div>
+    <a class="btn" href="about.html">
+      <span>ℹ️ About Us</span>
+      <span class="icon">→</span>
     </a>
 
   </div>
 
   <div class="footer">
-    © DTFA Community • Football League System
+    © DTFA • Football League System
   </div>
 
 </div>
