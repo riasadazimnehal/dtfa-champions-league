@@ -2,93 +2,136 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>DTFA Point Table</title>
+<title>DTFA Match Center</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
 
-body{
+*{
   margin:0;
-  font-family:Arial;
-  background:linear-gradient(135deg,#0f172a,#111827);
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Montserrat',sans-serif;
+}
+
+body{
   color:white;
+  min-height:100vh;
+
+  background:
+  linear-gradient(rgba(0,0,0,0.88), rgba(0,0,0,0.94)),
+  url('https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=1920&q=80');
+
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
 }
 
 /* HEADER */
 .header{
   text-align:center;
-  padding:30px;
+  padding:40px 10px 10px;
 }
 
-h1{
-  margin:0;
+.header h1{
+  font-size:40px;
+  font-weight:900;
 }
 
-/* TABLE */
-table{
-  width:85%;
-  margin:20px auto;
-  border-collapse:collapse;
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(10px);
-  border-radius:12px;
-  overflow:hidden;
+/* TABS */
+.tabs{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  margin:25px 0;
+  flex-wrap:wrap;
 }
 
-th,td{
-  padding:15px;
-  text-align:center;
-  border-bottom:1px solid rgba(255,255,255,0.1);
-}
-
-th{
-  background:rgba(34,197,94,0.2);
-}
-
-/* BUTTON */
-.btn{
-  display:block;
-  margin:20px auto;
-  padding:12px 20px;
-  border:none;
-  border-radius:20px;
-  background:#22c55e;
-  color:white;
-  font-weight:bold;
+.tab{
+  padding:10px 22px;
+  border-radius:25px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.15);
   cursor:pointer;
   transition:0.3s;
+  font-weight:600;
 }
 
-.btn:hover{
-  background:#16a34a;
+.tab:hover{
+  background:#22c55e;
+  transform:scale(1.05);
 }
 
-/* PANEL */
-#updatePanel{
+/* SECTION */
+.section{
   display:none;
   width:85%;
   margin:20px auto;
-  padding:20px;
+}
+
+.active{
+  display:block;
+}
+
+/* CARD */
+.card{
   background:rgba(255,255,255,0.06);
-  border-radius:12px;
   border:1px solid rgba(255,255,255,0.15);
+  backdrop-filter:blur(14px);
+  border-radius:18px;
+  padding:22px;
+  margin-bottom:18px;
+  transition:0.4s;
 }
 
-input{
-  padding:10px;
-  margin:8px;
-  border:none;
-  border-radius:8px;
-  width:200px;
+.card:hover{
+  transform:translateY(-8px) scale(1.02);
+  border-color:#22c55e;
 }
 
-.save{
-  padding:10px 15px;
-  border:none;
-  border-radius:10px;
-  background:#facc15;
-  cursor:pointer;
+/* MATCH */
+.match{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:10px 0;
 }
 
+.team{
+  font-weight:800;
+}
+
+.score{
+  font-size:22px;
+  color:#22c55e;
+  font-weight:900;
+}
+
+/* BADGES */
+.badge{
+  display:inline-block;
+  padding:5px 12px;
+  border-radius:20px;
+  font-size:12px;
+  margin-bottom:10px;
+  font-weight:700;
+}
+
+.live{background:red; animation:blink 1s infinite;}
+.upcoming{background:#facc15; color:black;}
+.ft{background:#22c55e;}
+
+@keyframes blink{50%{opacity:0.4;}}
+
+.status{
+  text-align:center;
+  margin-top:10px;
+  font-size:13px;
+  opacity:0.8;
+}
+
+/* BACK */
 .back{
   display:block;
   text-align:center;
@@ -98,7 +141,46 @@ input{
   text-decoration:none;
 }
 
-.back:hover{opacity:1;}
+/* 🔐 ADMIN PANEL */
+#adminPanel{
+  display:none;
+  width:85%;
+  margin:20px auto;
+  padding:20px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:15px;
+  backdrop-filter:blur(10px);
+}
+
+input{
+  padding:10px;
+  margin:6px;
+  border:none;
+  border-radius:8px;
+  width:160px;
+}
+
+button.save{
+  padding:10px 15px;
+  border:none;
+  border-radius:10px;
+  background:#facc15;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.lockBtn{
+  display:block;
+  margin:20px auto;
+  padding:12px 20px;
+  border:none;
+  border-radius:20px;
+  background:#22c55e;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
 
 </style>
 </head>
@@ -106,70 +188,104 @@ input{
 <body>
 
 <div class="header">
-  <h1>📊 DTFA POINT TABLE</h1>
+  <h1>📅 DTFA MATCH CENTER</h1>
 </div>
 
-<!-- POINT TABLE -->
-<table>
-  <tr>
-    <th>Team</th>
-    <th>Played</th>
-    <th>Won</th>
-    <th>Lost</th>
-    <th>Points</th>
-  </tr>
+<!-- 🔐 LIVE UPDATE BUTTON -->
+<button class="lockBtn" onclick="checkAccess()">🔴 Live Update (Admin Only)</button>
 
-  <tr>
-    <td>Team A</td>
-    <td>3</td>
-    <td>2</td>
-    <td>1</td>
-    <td>6</td>
-  </tr>
+<!-- 🔐 ADMIN PANEL -->
+<div id="adminPanel">
 
-  <tr>
-    <td>Team B</td>
-    <td>3</td>
-    <td>1</td>
-    <td>2</td>
-    <td>3</td>
-  </tr>
+  <h3>⚽ Live Match Update Panel</h3>
 
-</table>
-
-<!-- BUTTON -->
-<button class="btn" onclick="checkAccess()">🔴 Live Update</button>
-
-<!-- UPDATE PANEL -->
-<div id="updatePanel">
-
-  <h3>⚽ Live Update Panel (Admin Only)</h3>
-
-  <input type="text" placeholder="Team Name">
-  <input type="text" placeholder="Played">
-  <input type="text" placeholder="Won">
-  <input type="text" placeholder="Lost">
-  <input type="text" placeholder="Points">
+  <input type="text" placeholder="Team A">
+  <input type="text" placeholder="Score A">
+  <input type="text" placeholder="Team B">
+  <input type="text" placeholder="Score B">
 
   <button class="save">Save Update</button>
 
 </div>
 
-<a class="back" href="visit.html">⬅ Back to Dashboard</a>
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab" onclick="show('live')">🔴 Live (2)</div>
+  <div class="tab" onclick="show('upcoming')">🟡 Upcoming (3)</div>
+  <div class="tab" onclick="show('results')">🟢 Results (2)</div>
+</div>
+
+<!-- LIVE -->
+<div id="live" class="section active">
+
+  <div class="card">
+    <div class="badge live">LIVE</div>
+    <div class="match">
+      <div class="team">Incognito FC</div>
+      <div class="score">1 - 0</div>
+      <div class="team">Team B</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="badge live">LIVE</div>
+    <div class="match">
+      <div class="team">Team C</div>
+      <div class="score">0 - 0</div>
+      <div class="team">Team D</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- UPCOMING -->
+<div id="upcoming" class="section">
+
+  <div class="card">
+    <div class="badge upcoming">UPCOMING</div>
+    <div class="match">
+      <div class="team">Incognito FC</div>
+      <div class="score">VS</div>
+      <div class="team">Team C</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- RESULTS -->
+<div id="results" class="section">
+
+  <div class="card">
+    <div class="badge ft">FT</div>
+    <div class="match">
+      <div class="team">Incognito FC</div>
+      <div class="score">2 - 1</div>
+      <div class="team">Team D</div>
+    </div>
+  </div>
+
+</div>
+
+<a class="back" href="visit.html">⬅ Back</a>
 
 <script>
 
-/* LOCK SYSTEM */
+function show(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+/* 🔐 LOCK SYSTEM */
 function checkAccess(){
 
   let role = localStorage.getItem("role");
 
   if(role === "admin"){
-    document.getElementById("updatePanel").style.display = "block";
+    document.getElementById("adminPanel").style.display = "block";
     alert("✅ Admin Access Granted");
-  } 
+  }
   else{
-    alert("❌ Access Denied! Only Admin can update.");
+    alert("❌ Access Denied! Admin only.");
   }
 }
 
