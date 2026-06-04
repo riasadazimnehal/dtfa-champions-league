@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>DTFA Match Center</title>
+<title>DTFA Point Table</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
@@ -16,12 +16,12 @@
 }
 
 body{
-  color:white;
   min-height:100vh;
+  color:white;
 
   background:
-  linear-gradient(rgba(0,0,0,0.88), rgba(0,0,0,0.94)),
-  url('https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=1920&q=80');
+  linear-gradient(rgba(0,0,0,0.88), rgba(0,0,0,0.95)),
+  url('https://images.unsplash.com/photo-1522778034537-20a2486be803?auto=format&fit=crop&w=1920&q=80');
 
   background-size:cover;
   background-position:center;
@@ -31,104 +31,98 @@ body{
 /* HEADER */
 .header{
   text-align:center;
-  padding:40px 10px 10px;
+  padding:35px 10px;
 }
 
 .header h1{
   font-size:40px;
   font-weight:900;
+  letter-spacing:2px;
 }
 
-/* TABS */
-.tabs{
-  display:flex;
-  justify-content:center;
-  gap:15px;
-  margin:25px 0;
-  flex-wrap:wrap;
-}
+/* TABLE */
+table{
+  width:85%;
+  margin:20px auto;
+  border-collapse:collapse;
 
-.tab{
-  padding:10px 22px;
-  border-radius:25px;
   background:rgba(255,255,255,0.06);
-  border:1px solid rgba(255,255,255,0.15);
+  backdrop-filter:blur(15px);
+
+  border-radius:15px;
+  overflow:hidden;
+
+  animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(30px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+th,td{
+  padding:16px;
+  text-align:center;
+  border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+th{
+  background:rgba(34,197,94,0.25);
+  font-weight:800;
+  text-transform:uppercase;
+}
+
+tr:hover{
+  background:rgba(34,197,94,0.08);
+}
+
+/* BUTTON */
+.btn{
+  display:block;
+  margin:20px auto;
+  padding:12px 20px;
+  border:none;
+  border-radius:25px;
+  background:#22c55e;
+  color:white;
+  font-weight:bold;
   cursor:pointer;
   transition:0.3s;
-  font-weight:600;
 }
 
-.tab:hover{
-  background:#22c55e;
+.btn:hover{
   transform:scale(1.05);
 }
 
-/* SECTION */
-.section{
+/* ADMIN PANEL */
+#adminPanel{
   display:none;
   width:85%;
   margin:20px auto;
-}
+  padding:20px;
 
-.active{
-  display:block;
-}
-
-/* CARD */
-.card{
   background:rgba(255,255,255,0.06);
-  border:1px solid rgba(255,255,255,0.15);
-  backdrop-filter:blur(14px);
-  border-radius:18px;
-  padding:22px;
-  margin-bottom:18px;
-  transition:0.4s;
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:15px;
+
+  backdrop-filter:blur(10px);
 }
 
-.card:hover{
-  transform:translateY(-8px) scale(1.02);
-  border-color:#22c55e;
+input{
+  padding:10px;
+  margin:6px;
+  border:none;
+  border-radius:8px;
+  width:160px;
 }
 
-/* MATCH */
-.match{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin:10px 0;
-}
-
-.team{
-  font-weight:800;
-}
-
-.score{
-  font-size:22px;
-  color:#22c55e;
-  font-weight:900;
-}
-
-/* BADGES */
-.badge{
-  display:inline-block;
-  padding:5px 12px;
-  border-radius:20px;
-  font-size:12px;
-  margin-bottom:10px;
-  font-weight:700;
-}
-
-.live{background:red; animation:blink 1s infinite;}
-.upcoming{background:#facc15; color:black;}
-.ft{background:#22c55e;}
-
-@keyframes blink{50%{opacity:0.4;}}
-
-.status{
-  text-align:center;
-  margin-top:10px;
-  font-size:13px;
-  opacity:0.8;
+.save{
+  padding:10px 15px;
+  border:none;
+  border-radius:10px;
+  background:#facc15;
+  cursor:pointer;
+  font-weight:bold;
 }
 
 /* BACK */
@@ -141,46 +135,7 @@ body{
   text-decoration:none;
 }
 
-/* 🔐 ADMIN PANEL */
-#adminPanel{
-  display:none;
-  width:85%;
-  margin:20px auto;
-  padding:20px;
-  background:rgba(255,255,255,0.06);
-  border:1px solid rgba(255,255,255,0.2);
-  border-radius:15px;
-  backdrop-filter:blur(10px);
-}
-
-input{
-  padding:10px;
-  margin:6px;
-  border:none;
-  border-radius:8px;
-  width:160px;
-}
-
-button.save{
-  padding:10px 15px;
-  border:none;
-  border-radius:10px;
-  background:#facc15;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-.lockBtn{
-  display:block;
-  margin:20px auto;
-  padding:12px 20px;
-  border:none;
-  border-radius:20px;
-  background:#22c55e;
-  color:white;
-  font-weight:bold;
-  cursor:pointer;
-}
+.back:hover{opacity:1;}
 
 </style>
 </head>
@@ -188,81 +143,65 @@ button.save{
 <body>
 
 <div class="header">
-  <h1>📅 DTFA MATCH CENTER</h1>
+  <h1>🏆 DTFA POINT TABLE</h1>
 </div>
 
-<!-- 🔐 LIVE UPDATE BUTTON -->
-<button class="lockBtn" onclick="checkAccess()">🔴 Live Update (Admin Only)</button>
+<!-- TABLE -->
+<table>
+  <tr>
+    <th>Team</th>
+    <th>Played</th>
+    <th>Won</th>
+    <th>Lost</th>
+    <th>G/D</th>
+    <th>Points</th>
+  </tr>
 
-<!-- 🔐 ADMIN PANEL -->
+  <tr>
+    <td>Incognito FC</td>
+    <td>4</td>
+    <td>3</td>
+    <td>1</td>
+    <td>+5</td>
+    <td>9</td>
+  </tr>
+
+  <tr>
+    <td>Team B</td>
+    <td>4</td>
+    <td>2</td>
+    <td>2</td>
+    <td>+1</td>
+    <td>6</td>
+  </tr>
+
+  <tr>
+    <td>Team C</td>
+    <td>4</td>
+    <td>1</td>
+    <td>3</td>
+    <td>-3</td>
+    <td>3</td>
+  </tr>
+
+</table>
+
+<!-- BUTTON -->
+<button class="btn" onclick="checkAccess()">🔴 Admin Update Panel</button>
+
+<!-- ADMIN PANEL -->
 <div id="adminPanel">
 
-  <h3>⚽ Live Match Update Panel</h3>
+  <h3>⚽ Admin Only Update Panel</h3>
 
-  <input type="text" placeholder="Team A">
-  <input type="text" placeholder="Score A">
-  <input type="text" placeholder="Team B">
-  <input type="text" placeholder="Score B">
+  <input type="text" placeholder="Team Name">
+  <input type="number" placeholder="Played">
+  <input type="number" placeholder="Won">
+  <input type="number" placeholder="Lost">
+  <input type="text" placeholder="G/D">
+  <input type="number" placeholder="Points">
 
   <button class="save">Save Update</button>
-
-</div>
-
-<!-- TABS -->
-<div class="tabs">
-  <div class="tab" onclick="show('live')">🔴 Live (2)</div>
-  <div class="tab" onclick="show('upcoming')">🟡 Upcoming (3)</div>
-  <div class="tab" onclick="show('results')">🟢 Results (2)</div>
-</div>
-
-<!-- LIVE -->
-<div id="live" class="section active">
-
-  <div class="card">
-    <div class="badge live">LIVE</div>
-    <div class="match">
-      <div class="team">Incognito FC</div>
-      <div class="score">1 - 0</div>
-      <div class="team">Team B</div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="badge live">LIVE</div>
-    <div class="match">
-      <div class="team">Team C</div>
-      <div class="score">0 - 0</div>
-      <div class="team">Team D</div>
-    </div>
-  </div>
-
-</div>
-
-<!-- UPCOMING -->
-<div id="upcoming" class="section">
-
-  <div class="card">
-    <div class="badge upcoming">UPCOMING</div>
-    <div class="match">
-      <div class="team">Incognito FC</div>
-      <div class="score">VS</div>
-      <div class="team">Team C</div>
-    </div>
-  </div>
-
-</div>
-
-<!-- RESULTS -->
-<div id="results" class="section">
-
-  <div class="card">
-    <div class="badge ft">FT</div>
-    <div class="match">
-      <div class="team">Incognito FC</div>
-      <div class="score">2 - 1</div>
-      <div class="team">Team D</div>
-    </div>
-  </div>
 
 </div>
 
@@ -270,22 +209,22 @@ button.save{
 
 <script>
 
-function show(id){
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
+/* 🔐 ONLY THESE ADMINS */
+const admins = ["Nehal", "Tonmoy", "Pritom"];
 
-/* 🔐 LOCK SYSTEM */
 function checkAccess(){
 
-  let role = localStorage.getItem("role");
+  let user = prompt("Enter Admin Name:");
 
-  if(role === "admin"){
+  if(admins.includes(user)){
+
+    localStorage.setItem("role","admin");
     document.getElementById("adminPanel").style.display = "block";
+
     alert("✅ Admin Access Granted");
-  }
-  else{
-    alert("❌ Access Denied! Admin only.");
+
+  } else {
+    alert("❌ Access Denied");
   }
 }
 
