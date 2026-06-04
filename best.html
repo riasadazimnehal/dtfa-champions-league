@@ -31,7 +31,7 @@ body{
 /* HEADER */
 .header{
   text-align:center;
-  padding:40px 10px 10px;
+  padding:35px 10px 10px;
 }
 
 .header h1{
@@ -42,22 +42,24 @@ body{
 /* WRAPPER */
 .wrapper{
   width:100%;
-  height:70vh;
+  height:75vh;
   display:flex;
   justify-content:center;
   align-items:center;
   position:relative;
 }
 
-/* CAROUSEL */
+/* CAROUSEL TRACK */
 .carousel{
   display:flex;
-  transition:0.6s ease;
+  gap:40px;
+  transition:0.7s ease;
+  align-items:center;
 }
 
 /* CARD */
 .card{
-  width:700px;
+  width:650px;
   height:320px;
 
   display:flex;
@@ -70,20 +72,21 @@ body{
   border-radius:20px;
   padding:20px;
 
-  opacity:0.4;
+  opacity:0.3;
   transform:scale(0.85);
-  transition:0.5s;
+  transition:0.6s;
 }
 
-/* ACTIVE CARD */
+/* CENTER ACTIVE */
 .card.active{
   opacity:1;
-  transform:scale(1.05);
+  transform:scale(1.15);
   border-color:#facc15;
-  box-shadow:0 0 40px rgba(255,215,0,0.25);
+  box-shadow:0 0 60px rgba(255,215,0,0.35);
+  z-index:5;
 }
 
-/* LEFT IMAGE BIG */
+/* IMAGE */
 .img{
   width:45%;
   height:100%;
@@ -97,7 +100,7 @@ body{
   object-fit:cover;
 }
 
-/* RIGHT INFO */
+/* INFO */
 .info{
   width:55%;
   display:flex;
@@ -111,7 +114,7 @@ body{
 }
 
 .name{
-  font-size:24px;
+  font-size:26px;
   font-weight:900;
   margin-top:5px;
 }
@@ -144,15 +147,16 @@ body{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
-  width:50px;
-  height:50px;
+  width:55px;
+  height:55px;
   border-radius:50%;
   border:1px solid rgba(255,255,255,0.2);
   background:rgba(255,255,255,0.08);
   color:white;
-  font-size:26px;
+  font-size:28px;
   cursor:pointer;
   backdrop-filter:blur(10px);
+  z-index:10;
 }
 
 .btn:hover{
@@ -160,13 +164,13 @@ body{
   color:black;
 }
 
-.left-btn{left:20px;}
-.right-btn{right:20px;}
+.left-btn{left:25px;}
+.right-btn{right:25px;}
 
 /* BACK */
 .back{
   position:absolute;
-  bottom:20px;
+  bottom:15px;
   width:100%;
   text-align:center;
   color:white;
@@ -193,14 +197,11 @@ body{
 
     <!-- DEFENDER -->
     <div class="card active">
-      <div class="img">
-        <img src="https://i.pravatar.cc/500?img=5">
-      </div>
+      <div class="img"><img src="https://i.pravatar.cc/500?img=5"></div>
       <div class="info">
         <div class="role">Best Defender</div>
         <div class="name">Player DEF</div>
         <div class="team">Team B</div>
-
         <div class="stats">
           <div class="stat">Tackles 42</div>
           <div class="stat">Blocks 18</div>
@@ -210,14 +211,11 @@ body{
 
     <!-- FORWARD -->
     <div class="card">
-      <div class="img">
-        <img src="https://i.pravatar.cc/500?img=3">
-      </div>
+      <div class="img"><img src="https://i.pravatar.cc/500?img=3"></div>
       <div class="info">
         <div class="role">Best Forward</div>
         <div class="name">Player FW</div>
         <div class="team">Team C</div>
-
         <div class="stats">
           <div class="stat">Goals 12</div>
           <div class="stat">Assists 4</div>
@@ -227,14 +225,11 @@ body{
 
     <!-- GK -->
     <div class="card">
-      <div class="img">
-        <img src="https://i.pravatar.cc/500?img=12">
-      </div>
+      <div class="img"><img src="https://i.pravatar.cc/500?img=12"></div>
       <div class="info">
         <div class="role">Best GK</div>
         <div class="name">Player GK</div>
         <div class="team">Incognito FC</div>
-
         <div class="stats">
           <div class="stat">Saves 38</div>
           <div class="stat">Clean Sheets 5</div>
@@ -257,11 +252,14 @@ const cards = document.querySelectorAll(".card");
 
 function update(){
   cards.forEach((c,i)=>{
-    c.classList.remove("active");
-    if(i === index){
-      c.classList.add("active");
-    }
+    c.classList.toggle("active", i === index);
   });
+
+  const carousel = document.getElementById("carousel");
+
+  // CENTER FOCUS CALCULATION
+  const offset = (window.innerWidth / 2) - 325 - (index * 690);
+  carousel.style.transform = `translateX(${offset}px)`;
 }
 
 function move(dir){
@@ -270,11 +268,11 @@ function move(dir){
   if(index < 0) index = 0;
   if(index > cards.length - 1) index = cards.length - 1;
 
-  const carousel = document.getElementById("carousel");
-  carousel.style.transform = `translateX(${-index * 720}px)`;
-
   update();
 }
+
+window.onload = update;
+window.onresize = update;
 
 </script>
 
