@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DTFA Matches</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial;
+}
+
+body{
+  background:linear-gradient(135deg,#0f172a,#111827);
+  color:white;
+  min-height:100vh;
+}
+
+/* HEADER */
+.header{
+  text-align:center;
+  padding:30px 10px;
+}
+
+.header h1{
+  font-size:32px;
+  letter-spacing:2px;
+}
+
+.header p{
+  opacity:0.7;
+  margin-top:5px;
+}
+
+/* MATCH GRID */
+.container{
+  width:85%;
+  margin:30px auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;
+}
+
+/* MATCH CARD */
+.card{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:15px;
+  padding:20px;
+  backdrop-filter:blur(10px);
+  transition:0.3s;
+  position:relative;
+  overflow:hidden;
+}
+
+.card:hover{
+  transform:scale(1.05);
+  background:rgba(34,197,94,0.15);
+}
+
+/* TEAM ROW */
+.match{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:15px 0;
+}
+
+.team{
+  font-size:18px;
+  font-weight:bold;
+}
+
+/* SCORE */
+.score{
+  font-size:22px;
+  font-weight:bold;
+  color:#22c55e;
+}
+
+/* STATUS */
+.status{
+  text-align:center;
+  margin-top:10px;
+  font-size:14px;
+  opacity:0.8;
+}
+
+.win{color:#22c55e;}
+.draw{color:#facc15;}
+.loss{color:#ef4444;}
+
+/* BADGE */
+.badge{
+  position:absolute;
+  top:10px;
+  right:10px;
+  background:#22c55e;
+  padding:5px 10px;
+  border-radius:20px;
+  font-size:12px;
+  box-shadow:0 0 10px rgba(34,197,94,0.4);
+}
+
+/* BACK */
+.back{
+  display:block;
+  text-align:center;
+  margin:30px;
+  color:white;
+  opacity:0.7;
+  text-decoration:none;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+  <h1>📅 DTFA MATCH CENTER</h1>
+  <p>Live Fixtures & Results</p>
+</div>
+
+<div class="container">
+
+  <div class="card">
+    <div class="badge">FT</div>
+
+    <div class="match">
+      <div class="team">Team A</div>
+      <div class="score">2 - 1</div>
+      <div class="team">Team B</div>
+    </div>
+
+    <div class="status win">Team A Won the Match</div>
+  </div>
+
+  <div class="card">
+    <div class="badge">FT</div>
+
+    <div class="match">
+      <div class="team">Team C</div>
+      <div class="score">1 - 1</div>
+      <div class="team">Team D</div>
+    </div>
+
+    <div class="status draw">Match Drawn</div>
+  </div>
+
+  <div class="card">
+    <div class="badge">FT</div>
+
+    <div class="match">
+      <div class="team">Team A</div>
+      <div class="score">0 - 3</div>
+      <div class="team">Team C</div>
+    </div>
+
+    <div class="status loss">Team A Lost</div>
+  </div>
+
+  <div class="card">
+    <div class="badge">FT</div>
+
+    <div class="match">
+      <div class="team">Team B</div>
+      <div class="score">2 - 2</div>
+      <div class="team">Team D</div>
+    </div>
+
+    <div class="status draw">Draw Match</div>
+  </div>
+
+  <div class="card">
+    <div class="badge">FT</div>
+
+    <div class="match">
+      <div class="team">Team A</div>
+      <div class="score">3 - 2</div>
+      <div class="team">Team D</div>
+    </div>
+
+    <div class="status win">Team A Won</div>
+  </div>
+
+</div>
+
+<a class="back" href="visit.html">⬅ Back to Menu</a>
+
+</body>
+</html>
