@@ -1,22 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Champions League - DTFA</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Champions League</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:linear-gradient(135deg,#0f172a,#111827);
+  color:white;
+  text-align:center;
+}
+
+h1{
+  margin-top:40px;
+}
+
+.container{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+  width:80%;
+  margin:50px auto;
+}
+
+.card{
+  padding:30px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:15px;
+  text-decoration:none;
+  color:white;
+  font-size:20px;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:scale(1.05);
+  background:rgba(34,197,94,0.25);
+}
+
+.back{
+  display:block;
+  margin-top:20px;
+  color:white;
+  opacity:0.7;
+  text-decoration:none;
+}
+</style>
+
 </head>
+
 <body>
 
 <h1>🏆 Champions League</h1>
-<p>Select a team</p>
 
-<a class="team" href="teamA.html">🔵 Team A</a>
-<a class="team" href="teamB.html">🔴 Team B</a>
-<a class="team" href="teamC.html">🟢 Team C</a>
-<a class="team" href="teamD.html">🟡 Team D</a>
+<div class="container">
 
-<br><br>
+  <a class="card" href="teamA.html">🔵 Team A</a>
+  <a class="card" href="teamB.html">🔴 Team B</a>
+  <a class="card" href="teamC.html">🟢 Team C</a>
+  <a class="card" href="teamD.html">🟡 Team D</a>
 
-<a class="btn" href="tournament.html">⬅ Back</a>
+</div>
+
+<a class="back" href="visit.html">⬅ Back</a>
 
 </body>
 </html>
