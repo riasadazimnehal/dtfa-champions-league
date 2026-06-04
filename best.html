@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Best of the Bests</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Montserrat',sans-serif;
+}
+
+body{
+  min-height:100vh;
+  color:white;
+
+  /* LEGEND STADIUM BG */
+  background:
+  linear-gradient(rgba(0,0,0,0.88), rgba(0,0,0,0.96)),
+  url('https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1920&q=80');
+
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+}
+
+/* GOLD LIGHTS */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+
+  background:
+  radial-gradient(circle at 20% 20%, rgba(255,215,0,0.18), transparent 40%),
+  radial-gradient(circle at 80% 30%, rgba(34,197,94,0.15), transparent 40%),
+  radial-gradient(circle at 50% 80%, rgba(59,130,246,0.12), transparent 40%);
+
+  animation:glow 8s infinite alternate ease-in-out;
+}
+
+@keyframes glow{
+  from{transform:scale(1);}
+  to{transform:scale(1.1);}
+}
+
+/* HEADER */
+.header{
+  text-align:center;
+  padding:50px 10px 10px;
+}
+
+.header h1{
+  font-size:45px;
+  font-weight:900;
+  letter-spacing:3px;
+}
+
+.header p{
+  opacity:0.7;
+}
+
+/* GRID */
+.container{
+  width:92%;
+  margin:40px auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:25px;
+}
+
+/* CARD */
+.card{
+  position:relative;
+  border-radius:22px;
+  overflow:hidden;
+
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.15);
+  backdrop-filter:blur(18px);
+
+  transition:0.4s;
+}
+
+.card:hover{
+  transform:translateY(-10px) scale(1.02);
+  border-color:#facc15;
+  box-shadow:0 0 50px rgba(255,215,0,0.25);
+}
+
+/* PLAYER IMAGE BIG */
+.player-img{
+  width:100%;
+  height:260px;
+  overflow:hidden;
+  position:relative;
+}
+
+.player-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform:scale(1.1);
+  filter:brightness(1.05);
+}
+
+/* DARK GRADIENT OVER IMAGE */
+.player-img::after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:60%;
+  background:linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+}
+
+/* INFO */
+.info{
+  padding:18px;
+  text-align:center;
+}
+
+.role{
+  font-size:14px;
+  opacity:0.8;
+  margin-bottom:6px;
+}
+
+.name{
+  font-size:20px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+
+/* TEAM */
+.team{
+  margin-top:5px;
+  font-size:13px;
+  opacity:0.7;
+}
+
+/* STATS */
+.stats{
+  margin-top:12px;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.stat{
+  padding:6px 12px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:700;
+
+  background:rgba(255,215,0,0.12);
+  border:1px solid rgba(255,215,0,0.25);
+}
+
+/* SECTION TITLE */
+.title{
+  text-align:center;
+  font-size:28px;
+  font-weight:900;
+  margin-top:20px;
+  letter-spacing:2px;
+  color:#facc15;
+}
+
+/* BACK */
+.back{
+  display:block;
+  text-align:center;
+  margin:30px;
+  color:white;
+  opacity:0.6;
+  text-decoration:none;
+}
+
+.back:hover{opacity:1;}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>🏆 BEST OF THE BESTS</h1>
+  <p>Legendary Tournament Awards</p>
+</div>
+
+<div class="title">🧤 BEST GOALKEEPER</div>
+
+<div class="container">
+
+  <div class="card">
+    <div class="player-img">
+      <img src="https://i.pravatar.cc/500?img=12">
+    </div>
+    <div class="info">
+      <div class="role">Goalkeeper</div>
+      <div class="name">Player GK</div>
+      <div class="team">Incognito FC</div>
+      <div class="stats">
+        <div class="stat">Clean Sheets: 5</div>
+        <div class="stat">Saves: 38</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="title">🛡️ BEST DEFENDER</div>
+
+<div class="container">
+
+  <div class="card">
+    <div class="player-img">
+      <img src="https://i.pravatar.cc/500?img=5">
+    </div>
+    <div class="info">
+      <div class="role">Defender</div>
+      <div class="name">Player DEF</div>
+      <div class="team">Team B</div>
+      <div class="stats">
+        <div class="stat">Tackles: 42</div>
+        <div class="stat">Blocks: 18</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="title">🔥 BEST FORWARD</div>
+
+<div class="container">
+
+  <div class="card">
+    <div class="player-img">
+      <img src="https://i.pravatar.cc/500?img=3">
+    </div>
+    <div class="info">
+      <div class="role">Forward</div>
+      <div class="name">Player FW</div>
+      <div class="team">Team C</div>
+      <div class="stats">
+        <div class="stat">Goals: 12</div>
+        <div class="stat">Assists: 4</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<a class="back" href="visit.html">⬅ Back to Dashboard</a>
+
+</body>
+</html>
