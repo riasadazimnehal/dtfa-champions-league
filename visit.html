@@ -32,7 +32,6 @@ body{
 
     background-size:cover;
     background-position:center;
-    background-repeat:no-repeat;
 }
 
 /* Animated Lights */
@@ -50,16 +49,11 @@ body::before{
 }
 
 @keyframes lights{
-    from{
-        transform:scale(1);
-    }
-    to{
-        transform:scale(1.15);
-    }
+    from{transform:scale(1);}
+    to{transform:scale(1.15);}
 }
 
-/* Main Container */
-
+/* Container */
 .container{
     position:relative;
     z-index:10;
@@ -69,7 +63,6 @@ body::before{
 }
 
 /* Logo */
-
 .logo{
     width:140px;
     height:140px;
@@ -77,9 +70,8 @@ body::before{
     margin-bottom:20px;
     border-radius:50%;
     overflow:hidden;
-    border:4px solid rgba(255,255,255,.8);
+    border:4px solid rgba(255,255,255,.85);
     box-shadow:0 0 40px rgba(255,255,255,.25);
-
     animation:floatLogo 4s ease-in-out infinite;
 }
 
@@ -96,109 +88,89 @@ body::before{
 }
 
 /* Title */
-
 .title{
-    font-size:48px;
-    font-weight:800;
+    font-size:52px;
+    font-weight:900;
     color:white;
     letter-spacing:3px;
-    text-shadow:0 0 25px rgba(255,255,255,.3);
 }
 
 .subtitle{
-    color:rgba(255,255,255,.8);
+    color:rgba(255,255,255,.75);
     margin-top:10px;
-    margin-bottom:40px;
-    font-size:14px;
+    margin-bottom:45px;
+    font-size:13px;
+    letter-spacing:2px;
 }
 
-/* Menu Grid */
-
+/* GRID */
 .grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
     gap:25px;
 }
 
-/* Cards */
-
+/* CARD */
 .card{
     text-decoration:none;
     color:white;
 
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.15);
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.18);
+    backdrop-filter:blur(18px);
 
-    backdrop-filter:blur(15px);
+    border-radius:22px;
+    padding:32px;
 
-    border-radius:20px;
-    padding:30px;
-
-    transition:.4s;
+    transition:0.4s;
     position:relative;
     overflow:hidden;
 }
 
 .card:hover{
-    transform:translateY(-10px) scale(1.05);
-
+    transform:translateY(-12px) scale(1.06);
     border-color:#22c55e;
-
-    box-shadow:
-    0 0 30px rgba(34,197,94,.25),
-    0 0 60px rgba(34,197,94,.15);
+    box-shadow:0 0 80px rgba(34,197,94,.15);
 }
 
+/* shine */
 .card::before{
     content:"";
     position:absolute;
     top:0;
-    left:-120%;
+    left:-130%;
     width:100%;
     height:100%;
-
-    background:
-    linear-gradient(
-        120deg,
-        transparent,
-        rgba(255,255,255,.15),
-        transparent
-    );
-
-    transition:.6s;
+    background:linear-gradient(120deg,transparent,rgba(255,255,255,.18),transparent);
+    transition:0.7s;
 }
 
 .card:hover::before{
-    left:120%;
+    left:130%;
 }
 
+/* ICON */
 .icon{
-    font-size:40px;
+    font-size:44px;
     margin-bottom:15px;
 }
 
+/* TEXT */
 .card-title{
-    font-size:18px;
-    font-weight:700;
+    font-size:20px;
+    font-weight:800;
 }
 
 .card-sub{
     margin-top:8px;
     font-size:12px;
-    opacity:.7;
+    opacity:.75;
 }
 
+/* MOBILE */
 @media(max-width:768px){
-
-.title{
-    font-size:34px;
-}
-
-.logo{
-    width:110px;
-    height:110px;
-}
-
+.title{font-size:36px;}
+.logo{width:110px;height:110px;}
 }
 
 </style>
@@ -208,7 +180,6 @@ body::before{
 
 <div class="container">
 
-    <!-- DTFA Logo -->
     <div class="logo">
         <img src="logo.png" alt="DTFA Logo">
     </div>
@@ -237,6 +208,13 @@ body::before{
             <div class="icon">📊</div>
             <div class="card-title">Point Table</div>
             <div class="card-sub">League Standings</div>
+        </a>
+
+        <!-- BEST OF THE BESTS ADDED -->
+        <a href="best.html" class="card">
+            <div class="icon">👑</div>
+            <div class="card-title">Best of the Bests</div>
+            <div class="card-sub">Top Players Awards</div>
         </a>
 
         <a href="about.html" class="card">
