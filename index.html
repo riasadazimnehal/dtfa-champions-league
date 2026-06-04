@@ -24,8 +24,29 @@ body{
   width:100%;
   height:100%;
   background:url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2') center/cover no-repeat;
-  filter:brightness(0.35);
+  filter:brightness(0.35) saturate(1.4);
+  z-index:-3;
+  animation:zoom 18s infinite alternate;
+}
+
+@keyframes zoom{
+  from{transform:scale(1);}
+  to{transform:scale(1.1);}
+}
+
+/* LIGHT EFFECT */
+.lights{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:radial-gradient(circle, rgba(34,197,94,0.25) 0%, transparent 60%);
+  animation:moveLights 6s infinite alternate;
   z-index:-2;
+}
+
+@keyframes moveLights{
+  0%{transform:translateX(-40px) translateY(-20px);}
+  100%{transform:translateX(40px) translateY(20px);}
 }
 
 /* DARK OVERLAY */
@@ -33,11 +54,11 @@ body{
   position:fixed;
   width:100%;
   height:100%;
-  background:linear-gradient(180deg,rgba(0,0,0,0.4),rgba(0,0,0,0.85));
+  background:linear-gradient(180deg,rgba(0,0,0,0.3),rgba(0,0,0,0.85));
   z-index:-1;
 }
 
-/* CENTER */
+/* CENTER CONTENT */
 .container{
   height:100vh;
   display:flex;
@@ -47,22 +68,36 @@ body{
   text-align:center;
 }
 
-/* LOGO ANIMATION */
+/* LOGO IMAGE */
+.logo-img{
+  width:140px;
+  margin-bottom:10px;
+  filter:drop-shadow(0 0 15px #22c55e);
+  animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%{transform:translateY(0px);}
+  50%{transform:translateY(-10px);}
+  100%{transform:translateY(0px);}
+}
+
+/* DTFA TEXT */
 .logo{
   font-size:70px;
   font-weight:bold;
   color:#22c55e;
   letter-spacing:4px;
-  text-shadow:0 0 20px rgba(34,197,94,0.8);
+  text-shadow:0 0 25px rgba(34,197,94,0.9);
   animation:glow 2s infinite alternate;
 }
 
 @keyframes glow{
-  from{transform:scale(1); text-shadow:0 0 10px #22c55e;}
-  to{transform:scale(1.05); text-shadow:0 0 30px #22c55e;}
+  from{transform:scale(1);}
+  to{transform:scale(1.05);}
 }
 
-/* SUB TEXT */
+/* TEXT */
 h2{
   margin-top:10px;
   font-size:22px;
@@ -84,19 +119,12 @@ p{
   border-radius:12px;
   font-size:18px;
   transition:0.3s;
-  box-shadow:0 0 15px rgba(34,197,94,0.4);
+  box-shadow:0 0 20px rgba(34,197,94,0.4);
 }
 
 .btn:hover{
   transform:scale(1.1);
   background:#16a34a;
-}
-
-/* LOGO IMAGE */
-.logo-img{
-  width:130px;
-  margin-bottom:10px;
-  filter:drop-shadow(0 0 10px #22c55e);
 }
 </style>
 
@@ -105,11 +133,12 @@ p{
 <body>
 
 <div class="bg"></div>
+<div class="lights"></div>
 <div class="overlay"></div>
 
 <div class="container">
 
-  <!-- LOGO IMAGE (UPLOAD logo.png IN GITHUB) -->
+  <!-- LOGO IMAGE (UPLOAD logo.jpg) -->
   <img src="logo.jpg" class="logo-img">
 
   <div class="logo">DTFA</div>
