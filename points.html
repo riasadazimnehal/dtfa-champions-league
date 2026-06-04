@@ -209,12 +209,12 @@ input{
 
 <script>
 
-/* 🔐 ONLY THESE ADMINS */
-const admins = ["Nehal", "Tonmoy", "Pritom"];
+/* 🔐 ADMIN CODES */
+const admins = ["834", "299"];
 
 function checkAccess(){
 
-  let user = prompt("Enter Admin Name:");
+  let user = prompt("Enter Admin Code:");
 
   if(admins.includes(user)){
 
@@ -224,7 +224,7 @@ function checkAccess(){
     alert("✅ Admin Access Granted");
 
   } else {
-    alert("❌ Access Denied");
+    alert("❌ Invalid Code");
   }
 }
 
