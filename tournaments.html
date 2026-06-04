@@ -2,156 +2,292 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DTFA Tournaments</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Montserrat',sans-serif;
+}
+
 body{
-  margin:0;
-  font-family:Arial;
-  background:linear-gradient(135deg,#0f172a,#111827);
-  color:white;
-  text-align:center;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    color:white;
+
+    background:
+    linear-gradient(
+        rgba(0,0,0,.75),
+        rgba(0,0,0,.88)
+    ),
+    url('https://images.unsplash.com/photo-1547347298-4074fc3086f0?auto=format&fit=crop&w=1920&q=80');
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
 }
 
-/* HEADER */
-h1{
-  margin-top:30px;
-  font-size:32px;
+/* Animated Lights */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+
+    background:
+    radial-gradient(circle at 20% 20%,rgba(34,197,94,.12),transparent 30%),
+    radial-gradient(circle at 80% 20%,rgba(59,130,246,.12),transparent 30%),
+    radial-gradient(circle at 50% 90%,rgba(255,255,255,.05),transparent 40%);
+
+    animation:lights 8s infinite alternate ease-in-out;
 }
 
-p{
-  opacity:0.7;
+@keyframes lights{
+    from{
+        transform:scale(1);
+    }
+    to{
+        transform:scale(1.15);
+    }
 }
 
-/* CONTAINER */
 .container{
-  width:85%;
-  margin:50px auto;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
+    position:relative;
+    z-index:10;
+    width:90%;
+    max-width:1200px;
+    text-align:center;
 }
 
-/* CARD */
+/* Trophy */
+
+.trophy{
+    font-size:90px;
+    margin-bottom:15px;
+    animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-15px);}
+    100%{transform:translateY(0);}
+}
+
+/* Heading */
+
+.title{
+    font-size:52px;
+    font-weight:900;
+    letter-spacing:3px;
+    text-shadow:0 0 25px rgba(255,255,255,.25);
+}
+
+.subtitle{
+    margin-top:10px;
+    margin-bottom:50px;
+    opacity:.75;
+}
+
+/* Cards */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+    gap:30px;
+}
+
 .card{
-  padding:25px;
-  background:rgba(255,255,255,0.06);
-  border:1px solid rgba(255,255,255,0.15);
-  border-radius:15px;
-  cursor:pointer;
-  transition:0.3s;
-  backdrop-filter:blur(10px);
+    text-decoration:none;
+    color:white;
+
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15);
+
+    backdrop-filter:blur(16px);
+
+    border-radius:28px;
+    padding:40px;
+
+    position:relative;
+    overflow:hidden;
+
+    transition:.4s;
 }
 
 .card:hover{
-  transform:scale(1.05);
-  background:rgba(34,197,94,0.15);
-  box-shadow:0 0 20px rgba(34,197,94,0.3);
+    transform:translateY(-12px) scale(1.04);
 }
 
-/* TITLE */
-.title{
-  font-size:18px;
-  font-weight:bold;
+.champions:hover{
+    border-color:#22c55e;
+    box-shadow:0 0 45px rgba(34,197,94,.35);
 }
 
-/* BADGE */
+.premier:hover{
+    border-color:#facc15;
+    box-shadow:0 0 45px rgba(250,204,21,.35);
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-120%;
+    width:100%;
+    height:100%;
+
+    background:
+    linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.15),
+        transparent
+    );
+
+    transition:.8s;
+}
+
+.card:hover::before{
+    left:120%;
+}
+
+.icon{
+    font-size:70px;
+    margin-bottom:15px;
+}
+
+.name{
+    font-size:28px;
+    font-weight:800;
+    margin-bottom:10px;
+}
+
+.desc{
+    font-size:14px;
+    opacity:.75;
+}
+
 .badge{
-  display:inline-block;
-  margin-top:10px;
-  padding:5px 12px;
-  border-radius:20px;
-  font-size:12px;
-  background:#22c55e;
+    display:inline-block;
+    margin-top:20px;
+
+    padding:10px 20px;
+
+    background:#facc15;
+    color:black;
+
+    border-radius:30px;
+
+    font-weight:800;
+
+    animation:pulse 1.5s infinite;
 }
 
-.lock{
-  background:#facc15;
-  color:black;
-}
-
-/* COMING SOON SCREEN */
-#coming{
-  display:none;
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:black;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-}
-
-.neon{
-  font-size:50px;
-  color:#22c55e;
-  text-shadow:0 0 10px #22c55e,0 0 30px #22c55e;
-  animation:glow 1.5s infinite alternate;
-}
-
-@keyframes glow{
-  from{transform:scale(1);}
-  to{transform:scale(1.1);}
-}
-
-.sub{
-  margin-top:10px;
-  opacity:0.7;
+@keyframes pulse{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.08);}
+    100%{transform:scale(1);}
 }
 
 .back{
-  display:block;
-  margin:30px;
-  color:white;
-  opacity:0.7;
-  text-decoration:none;
-}
-</style>
+    display:inline-block;
+    margin-top:40px;
 
+    padding:14px 30px;
+
+    border-radius:30px;
+
+    text-decoration:none;
+    color:white;
+
+    background:rgba(255,255,255,.08);
+
+    transition:.3s;
+}
+
+.back:hover{
+    background:rgba(255,255,255,.18);
+}
+
+@media(max-width:768px){
+
+    .title{
+        font-size:36px;
+    }
+
+    .trophy{
+        font-size:70px;
+    }
+
+}
+
+</style>
 </head>
 
 <body>
 
-<h1>🏆 DTFA TOURNAMENTS</h1>
-<p>Select Tournament</p>
-
 <div class="container">
 
-  <div class="card" onclick="openChampions()">
-    <div class="title">DTFA Champions League</div>
-    <div class="badge">ACTIVE</div>
-  </div>
+    <div class="trophy">🏆</div>
 
-  <div class="card" onclick="comingSoon()">
-    <div class="title">DTFA Premier League 2026</div>
-    <div class="badge lock">COMING SOON</div>
-  </div>
+    <div class="title">
+        DTFA TOURNAMENTS
+    </div>
+
+    <div class="subtitle">
+        Select Your Competition
+    </div>
+
+    <div class="grid">
+
+        <a href="champions.html" class="card champions">
+
+            <div class="icon">⚽</div>
+
+            <div class="name">
+                DTFA Champions League
+            </div>
+
+            <div class="desc">
+                Teams • Players • Fixtures • Standings
+            </div>
+
+        </a>
+
+        <div class="card premier">
+
+            <div class="icon">⭐</div>
+
+            <div class="name">
+                DTFA Premier League 2026
+            </div>
+
+            <div class="desc">
+                New Season Under Preparation
+            </div>
+
+            <div class="badge">
+                COMING SOON
+            </div>
+
+        </div>
+
+    </div>
+
+    <a href="visit.html" class="back">
+        ⬅ Back To Dashboard
+    </a>
 
 </div>
-
-<a class="back" href="visit.html">⬅ Back to Menu</a>
-
-<!-- COMING SOON -->
-<div id="coming">
-  <div class="neon">COMING SOON</div>
-  <div class="sub">DTFA PREMIER LEAGUE 2026</div>
-</div>
-
-<script>
-function openChampions(){
-  window.location.href = "champions.html";
-}
-
-function comingSoon(){
-  document.getElementById("coming").style.display="flex";
-
-  setTimeout(()=>{
-    document.getElementById("coming").style.display="none";
-  },2500);
-}
-</script>
 
 </body>
 </html>
