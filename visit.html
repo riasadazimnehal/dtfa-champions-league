@@ -2,52 +2,159 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>DTFA Menu</title>
+<title>DTFA Dashboard</title>
+
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
-body{
+*{
   margin:0;
-  font-family:Arial;
-  background:linear-gradient(135deg,#0f172a,#111827);
-  color:white;
-  text-align:center;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Montserrat', sans-serif;
 }
 
-/* HEADER */
+body{
+  height:100vh;
+  background:linear-gradient(135deg,#0f172a,#111827);
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* CENTER WRAPPER */
+.wrapper{
+  text-align:center;
+  width:100%;
+}
+
+/* LOGO */
+.logo{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  overflow:hidden;
+  border:3px solid #fff;
+  margin:auto;
+  animation:float 3s ease-in-out infinite;
+  box-shadow:0 0 30px rgba(255,255,255,0.2);
+}
+
+.logo img{
+  width:100%;
+  height:100%;
+}
+
+@keyframes float{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-10px);}
+  100%{transform:translateY(0);}
+}
+
+/* TITLE */
 h1{
-  margin-top:40px;
+  margin-top:20px;
+  font-size:34px;
+  letter-spacing:2px;
+}
+
+p{
+  opacity:0.7;
+  margin-top:5px;
 }
 
 /* MENU GRID */
 .menu{
+  margin:40px auto 0;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
-  width:80%;
-  margin:50px auto;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+  width:320px;
 }
 
-/* BUTTON CARD */
+/* CARD */
 .card{
-  padding:25px;
   background:rgba(255,255,255,0.06);
   border:1px solid rgba(255,255,255,0.15);
-  border-radius:15px;
-  cursor:pointer;
-  transition:0.3s;
+  border-radius:18px;
+  padding:18px;
+  text-decoration:none;
+  color:white;
+  text-align:left;
+  transition:0.4s;
+  backdrop-filter:blur(10px);
+  position:relative;
+  overflow:hidden;
 }
 
 .card:hover{
-  transform:scale(1.05);
-  background:rgba(34,197,94,0.15);
+  transform:translateY(-8px) scale(1.05);
+  background:rgba(34,197,94,0.12);
+  box-shadow:0 0 25px rgba(34,197,94,0.25);
 }
 
-/* LINK */
-a{
+/* ICON */
+.icon{
+  font-size:22px;
+}
+
+/* TITLE */
+.title{
+  font-size:15px;
+  font-weight:800;
+  margin-top:8px;
+  letter-spacing:1px;
+}
+
+/* SUB TEXT */
+.sub{
+  font-size:11px;
+  opacity:0.7;
+  margin-top:4px;
+}
+
+/* GLOW LINE */
+.card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.1),transparent);
+  transition:0.5s;
+}
+
+.card:hover::before{
+  left:100%;
+}
+
+/* BUTTON */
+.btn{
+  display:inline-block;
+  margin-top:25px;
+  padding:10px 22px;
+  background:rgba(255,255,255,0.1);
+  border:1px solid rgba(255,255,255,0.3);
+  border-radius:25px;
   color:white;
   text-decoration:none;
-  font-size:18px;
-  font-weight:bold;
+  transition:0.3s;
+}
+
+.btn:hover{
+  background:#22c55e;
+  transform:scale(1.05);
+  box-shadow:0 0 20px rgba(34,197,94,0.4);
+}
+
+/* FOOTER */
+.footer{
+  margin-top:20px;
+  font-size:12px;
+  opacity:0.5;
 }
 </style>
 
@@ -55,24 +162,48 @@ a{
 
 <body>
 
-<h1>⚽ DTFA DASHBOARD</h1>
+<div class="wrapper">
 
-<div class="menu">
-
-  <div class="card">
-    <a href="tournaments.html">🏆 Tournaments</a>
+  <div class="logo">
+    <img src="https://i.pravatar.cc/150?img=15">
   </div>
 
-  <div class="card">
-    <a href="matches.html">📅 Match Schedule & Results</a>
+  <h1>DTFA</h1>
+  <p>Dhaka Turf Football Association</p>
+
+  <a class="btn" href="tournaments.html">🚀 Enter League</a>
+
+  <!-- MENU -->
+  <div class="menu">
+
+    <a class="card" href="tournaments.html">
+      <div class="icon">🏆</div>
+      <div class="title">Tournaments</div>
+      <div class="sub">Champions League</div>
+    </a>
+
+    <a class="card" href="matches.html">
+      <div class="icon">📅</div>
+      <div class="title">Matches</div>
+      <div class="sub">Schedule & Results</div>
+    </a>
+
+    <a class="card" href="points.html">
+      <div class="icon">📊</div>
+      <div class="title">Point Table</div>
+      <div class="sub">Team Ranking</div>
+    </a>
+
+    <a class="card" href="about.html">
+      <div class="icon">ℹ️</div>
+      <div class="title">About</div>
+      <div class="sub">Community Info</div>
+    </a>
+
   </div>
 
-  <div class="card">
-    <a href="points.html">📊 Point Table</a>
-  </div>
-
-  <div class="card">
-    <a href="about.html">ℹ️ About Us</a>
+  <div class="footer">
+    © DTFA Community • Football League System
   </div>
 
 </div>
