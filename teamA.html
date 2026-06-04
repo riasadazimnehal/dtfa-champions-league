@@ -1,29 +1,113 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Team A - DTFA</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Team A - DTFA</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:linear-gradient(135deg,#0f172a,#111827);
+  color:white;
+  text-align:center;
+}
+
+h1{
+  margin-top:30px;
+}
+
+.subtitle{
+  opacity:0.7;
+}
+
+/* PLAYER GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+  width:85%;
+  margin:40px auto;
+}
+
+/* PLAYER CARD */
+.card{
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:15px;
+  padding:20px;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:scale(1.05);
+  background:rgba(34,197,94,0.2);
+}
+
+/* AVATAR */
+.avatar{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  background:#22c55e;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:auto;
+  font-weight:bold;
+  font-size:18px;
+}
+
+/* BACK BUTTON */
+.back{
+  display:block;
+  margin:20px;
+  color:white;
+  text-decoration:none;
+  opacity:0.7;
+}
+</style>
+
 </head>
+
 <body>
 
-<h1>🔵 Team A Players</h1>
+<h1>🔵 Team A</h1>
+<p class="subtitle">Player Squad</p>
 
-<table>
-  <tr>
-    <th>Player Name</th>
-    <th>Goals</th>
-    <th>Matches</th>
-  </tr>
+<div class="grid">
 
-  <tr><td>Player A1</td><td>5</td><td>3</td></tr>
-  <tr><td>Player A2</td><td>2</td><td>3</td></tr>
-  <tr><td>Player A3</td><td>3</td><td>3</td></tr>
-  <tr><td>Player A4</td><td>1</td><td>3</td></tr>
-</table>
+  <div class="card">
+    <div class="avatar">A1</div>
+    <h3>Player A1</h3>
+    <p>⚽ Goals: 5</p>
+    <p>🎮 Matches: 3</p>
+  </div>
 
-<br>
+  <div class="card">
+    <div class="avatar">A2</div>
+    <h3>Player A2</h3>
+    <p>⚽ Goals: 2</p>
+    <p>🎮 Matches: 3</p>
+  </div>
 
-<a class="btn" href="champions.html">⬅ Back</a>
+  <div class="card">
+    <div class="avatar">A3</div>
+    <h3>Player A3</h3>
+    <p>⚽ Goals: 4</p>
+    <p>🎮 Matches: 3</p>
+  </div>
+
+  <div class="card">
+    <div class="avatar">A4</div>
+    <h3>Player A4</h3>
+    <p>⚽ Goals: 1</p>
+    <p>🎮 Matches: 3</p>
+  </div>
+
+</div>
+
+<a class="back" href="champions.html">⬅ Back to Teams</a>
 
 </body>
 </html>
