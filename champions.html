@@ -40,17 +40,28 @@ body{
   margin:20px;
 }
 
+/* TEAM CARD (ANIMATION FIXED) */
 .team-btn{
-  padding:10px 20px;
+  padding:12px 22px;
   border-radius:20px;
   background:rgba(255,255,255,0.06);
   border:1px solid rgba(255,255,255,0.2);
   cursor:pointer;
   transition:0.3s;
+  animation:float 3s ease-in-out infinite;
+  position:relative;
 }
 
 .team-btn:hover{
   background:#22c55e;
+  transform:scale(1.1);
+  box-shadow:0 0 20px rgba(34,197,94,0.4);
+}
+
+@keyframes float{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-6px);}
+  100%{transform:translateY(0);}
 }
 
 /* PLAYER SECTION */
@@ -71,7 +82,7 @@ body{
   gap:20px;
 }
 
-/* CARD */
+/* PLAYER CARD */
 .card{
   background:rgba(255,255,255,0.06);
   border:1px solid rgba(255,255,255,0.15);
@@ -131,7 +142,7 @@ body{
 
 <div class="header">
   <h1>🏆 DTFA CHAMPIONS LEAGUE</h1>
-  <p>4 Teams • 10 Players Each</p>
+  <p>Select Team</p>
 </div>
 
 <!-- TEAMS -->
@@ -145,36 +156,64 @@ body{
 <!-- TEAM A -->
 <div id="A" class="players active">
   <div class="grid">
-    <script>
-      document.write(generateTeam("A",1,10));
-    </script>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=1"></div><div class="name">Player A1</div><div class="info">Age: 22 | Position: Forward</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=2"></div><div class="name">Player A2</div><div class="info">Age: 23 | Midfielder</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=3"></div><div class="name">Player A3</div><div class="info">Age: 21 | Defender</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=4"></div><div class="name">Player A4</div><div class="info">Age: 24 | Forward</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=5"></div><div class="name">Player A5</div><div class="info">Age: 20 | Midfielder</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=6"></div><div class="name">Player A6</div><div class="info">Age: 25 | Defender</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=7"></div><div class="name">Player A7</div><div class="info">Age: 22 | Forward</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=8"></div><div class="name">Player A8</div><div class="info">Age: 23 | Midfielder</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=9"></div><div class="name">Player A9</div><div class="info">Age: 21 | Defender</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=10"></div><div class="name">Player A10</div><div class="info">Age: 24 | Forward</div></div>
   </div>
 </div>
 
 <!-- TEAM B -->
 <div id="B" class="players">
   <div class="grid">
-    <script>
-      document.write(generateTeam("B",11,20));
-    </script>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=11"></div><div class="name">Player B1</div><div class="info">Age: 23 | Forward</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=12"></div><div class="name">Player B2</div><div class="info">Age: 25 | Midfielder</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=13"></div><div class="name">Player B3</div><div class="info">Age: 22 | Defender</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=14"></div><div class="name">Player B4</div><div class="info">Age: 24 | Forward</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=15"></div><div class="name">Player B5</div><div class="info">Age: 20 | Midfielder</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=16"></div><div class="name">Player B6</div><div class="info">Age: 26 | Defender</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=17"></div><div class="name">Player B7</div><div class="info">Age: 22 | Forward</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=18"></div><div class="name">Player B8</div><div class="info">Age: 23 | Midfielder</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=19"></div><div class="name">Player B9</div><div class="info">Age: 21 | Defender</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=20"></div><div class="name">Player B10</div><div class="info">Age: 24 | Forward</div></div>
   </div>
 </div>
 
 <!-- TEAM C -->
 <div id="C" class="players">
   <div class="grid">
-    <script>
-      document.write(generateTeam("C",21,30));
-    </script>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=21"></div><div class="name">Player C1</div><div class="info">Age: 22 | Forward</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=22"></div><div class="name">Player C2</div><div class="info">Age: 24 | Midfielder</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=23"></div><div class="name">Player C3</div><div class="info">Age: 21 | Defender</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=24"></div><div class="name">Player C4</div><div class="info">Age: 25 | Forward</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=25"></div><div class="name">Player C5</div><div class="info">Age: 23 | Midfielder</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=26"></div><div class="name">Player C6</div><div class="info">Age: 20 | Defender</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=27"></div><div class="name">Player C7</div><div class="info">Age: 22 | Forward</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=28"></div><div class="name">Player C8</div><div class="info">Age: 24 | Midfielder</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=29"></div><div class="name">Player C9</div><div class="info">Age: 21 | Defender</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=30"></div><div class="name">Player C10</div><div class="info">Age: 25 | Forward</div></div>
   </div>
 </div>
 
 <!-- TEAM D -->
 <div id="D" class="players">
   <div class="grid">
-    <script>
-      document.write(generateTeam("D",31,40));
-    </script>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=31"></div><div class="name">Player D1</div><div class="info">Age: 22 | Forward</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=32"></div><div class="name">Player D2</div><div class="info">Age: 24 | Midfielder</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=33"></div><div class="name">Player D3</div><div class="info">Age: 21 | Defender</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=34"></div><div class="name">Player D4</div><div class="info">Age: 25 | Forward</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=35"></div><div class="name">Player D5</div><div class="info">Age: 23 | Midfielder</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=36"></div><div class="name">Player D6</div><div class="info">Age: 20 | Defender</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=37"></div><div class="name">Player D7</div><div class="info">Age: 22 | Forward</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=38"></div><div class="name">Player D8</div><div class="info">Age: 24 | Midfielder</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=39"></div><div class="name">Player D9</div><div class="info">Age: 21 | Defender</div></div>
+    <div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=40"></div><div class="name">Player D10</div><div class="info">Age: 25 | Forward</div></div>
   </div>
 </div>
 
@@ -186,27 +225,6 @@ function show(team){
     p.classList.remove('active');
   });
   document.getElementById(team).classList.add('active');
-}
-
-/* AUTO GENERATE 10 PLAYERS PER TEAM */
-function generateTeam(letter,start,end){
-  let html = "";
-  let positions = ["Forward","Midfielder","Defender","Goalkeeper"];
-
-  for(let i=start;i<=end;i++){
-    html += `
-      <div class="card">
-        <div class="avatar">
-          <img src="https://i.pravatar.cc/100?img=${i}">
-        </div>
-        <div class="name">Player ${letter}${i-start+1}</div>
-        <div class="info">
-          Age: ${20 + (i % 7)} | Position: ${positions[i % 4]}
-        </div>
-      </div>
-    `;
-  }
-  return html;
 }
 </script>
 
