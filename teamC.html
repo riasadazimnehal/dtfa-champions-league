@@ -2,81 +2,38 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Team C - DTFA</title>
+<title>Team C Players</title>
 
 <style>
-body{
-  margin:0;
-  font-family:Arial;
-  background:linear-gradient(135deg,#0f172a,#111827);
-  color:white;
-  text-align:center;
-}
-
-h1{margin-top:30px;}
-.subtitle{opacity:0.7;}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:20px;
-  width:85%;
-  margin:40px auto;
-}
-
-.card{
-  background:rgba(255,255,255,0.08);
-  border:1px solid rgba(255,255,255,0.2);
-  border-radius:15px;
-  padding:20px;
-  transition:0.3s;
-}
-
-.card:hover{
-  transform:scale(1.05);
-  background:rgba(34,197,94,0.2);
-}
-
-.avatar{
-  width:60px;
-  height:60px;
-  border-radius:50%;
-  background:#22c55e;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:auto;
-  font-weight:bold;
-}
-
-.back{
-  display:block;
-  margin:20px;
-  color:white;
-  text-decoration:none;
-  opacity:0.7;
-}
+body{margin:0;font-family:Arial;background:linear-gradient(135deg,#0f172a,#111827);color:white;}
+.header{text-align:center;padding:30px;}
+.container{width:90%;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;}
+.card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);border-radius:15px;padding:20px;text-align:center;transition:0.3s;}
+.card:hover{transform:scale(1.05);background:rgba(34,197,94,0.15);}
+.avatar{width:70px;height:70px;border-radius:50%;margin:auto;overflow:hidden;border:2px solid #22c55e;}
+.avatar img{width:100%;}
+.name{margin-top:10px;font-weight:bold;}
+.info{font-size:14px;opacity:0.8;margin-top:5px;}
+.back{display:block;text-align:center;margin:30px;color:white;opacity:0.7;text-decoration:none;}
 </style>
 
 </head>
-
 <body>
 
-<h1>🟢 Team C</h1>
-<p class="subtitle">10 Player Squad</p>
+<div class="header"><h1>⚽ TEAM C PLAYERS</h1></div>
 
-<div class="grid">
+<div class="container">
 
-  <div class="card"><div class="avatar">C1</div><h3>Player C1</h3><p>⚽ Goals: 6</p></div>
-  <div class="card"><div class="avatar">C2</div><h3>Player C2</h3><p>⚽ Goals: 2</p></div>
-  <div class="card"><div class="avatar">C3</div><h3>Player C3</h3><p>⚽ Goals: 3</p></div>
-  <div class="card"><div class="avatar">C4</div><h3>Player C4</h3><p>⚽ Goals: 1</p></div>
-  <div class="card"><div class="avatar">C5</div><h3>Player C5</h3><p>⚽ Goals: 4</p></div>
-  <div class="card"><div class="avatar">C6</div><h3>Player C6</h3><p>⚽ Goals: 2</p></div>
-  <div class="card"><div class="avatar">C7</div><h3>Player C7</h3><p>⚽ Goals: 5</p></div>
-  <div class="card"><div class="avatar">C8</div><h3>Player C8</h3><p>⚽ Goals: 1</p></div>
-  <div class="card"><div class="avatar">C9</div><h3>Player C9</h3><p>⚽ Goals: 3</p></div>
-  <div class="card"><div class="avatar">C10</div><h3>Player C10</h3><p>⚽ Goals: 7</p></div>
+<div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=21"></div><div class="name">C1 Player</div><div class="info">Age: 22 | Forward</div></div>
+<div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=22"></div><div class="name">C2 Player</div><div class="info">Age: 23 | Midfielder</div></div>
+<div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=23"></div><div class="name">C3 Player</div><div class="info">Age: 21 | Defender</div></div>
+<div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=24"></div><div class="name">C4 Player</div><div class="info">Age: 24 | Forward</div></div>
+<div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=25"></div><div class="name">C5 Player</div><div class="info">Age: 20 | Midfielder</div></div>
+<div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=26"></div><div class="name">C6 Player</div><div class="info">Age: 25 | Defender</div></div>
+<div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=27"></div><div class="name">C7 Player</div><div class="info">Age: 22 | Forward</div></div>
+<div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=28"></div><div class="name">C8 Player</div><div class="info">Age: 23 | Midfielder</div></div>
+<div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=29"></div><div class="name">C9 Player</div><div class="info">Age: 21 | Defender</div></div>
+<div class="card"><div class="avatar"><img src="https://i.pravatar.cc/100?img=30"></div><div class="name">C10 Player</div><div class="info">Age: 24 | Forward</div></div>
 
 </div>
 
