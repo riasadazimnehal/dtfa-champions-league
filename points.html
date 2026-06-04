@@ -2,66 +2,46 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>DTFA Live Point System</title>
+<title>DTFA Persistent Point System</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Montserrat',sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Montserrat;}
 
 body{
   min-height:100vh;
   color:white;
-
-  background:
-  linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.95)),
+  background:linear-gradient(rgba(0,0,0,.9),rgba(0,0,0,.95)),
   url('https://images.unsplash.com/photo-1522778034537-20a2486be803?auto=format&fit=crop&w=1920&q=80');
-
   background-size:cover;
-  background-position:center;
-  background-attachment:fixed;
 }
 
-h2{
-  text-align:center;
-  margin:20px 0;
-}
+h2{text-align:center;margin:20px;}
 
-/* TABLE */
 table{
   width:85%;
   margin:auto;
   border-collapse:collapse;
-  background:rgba(255,255,255,0.06);
+  background:rgba(255,255,255,.06);
   backdrop-filter:blur(10px);
-  border-radius:15px;
-  overflow:hidden;
 }
 
 th,td{
   padding:12px;
   text-align:center;
-  border-bottom:1px solid rgba(255,255,255,0.1);
+  border-bottom:1px solid rgba(255,255,255,.1);
 }
 
-th{
-  background:rgba(34,197,94,0.25);
-}
+th{background:rgba(34,197,94,.25);}
 
-/* PANEL */
 .panel{
   width:85%;
   margin:20px auto;
   padding:20px;
-  background:rgba(255,255,255,0.05);
+  background:rgba(255,255,255,.05);
   border-radius:15px;
-  border:1px solid rgba(255,255,255,0.2);
 }
 
 select,input{
@@ -77,7 +57,6 @@ button{
   border-radius:10px;
   cursor:pointer;
   font-weight:bold;
-  margin:5px;
 }
 
 .submit{background:#22c55e;color:white;}
@@ -88,7 +67,7 @@ button{
 
 <body>
 
-<h2>🏆 DTFA LIVE POINT TABLE</h2>
+<h2>🏆 DTFA LIVE POINT SYSTEM</h2>
 
 <table id="table">
 <thead>
@@ -117,40 +96,41 @@ button{
 
 <br>
 
-<button class="submit" onclick="addMatch()">Submit Result</button>
+<button class="submit" onclick="addMatch()">Submit</button>
 <button class="reset" onclick="resetData()">Reset</button>
 
 </div>
 
 <script>
 
-const admins = ["834","299"];
+const admins=["834","299"];
 
-let teams = {
+let teams = JSON.parse(localStorage.getItem("teams")) || {
   "Incognito FC":{P:0,W:0,D:0,L:0,GD:0,Pts:0},
   "Team B":{P:0,W:0,D:0,L:0,GD:0,Pts:0},
   "Team C":{P:0,W:0,D:0,L:0,GD:0,Pts:0},
   "Team D":{P:0,W:0,D:0,L:0,GD:0,Pts:0}
 };
 
-/* ADMIN CHECK */
+function save(){
+  localStorage.setItem("teams",JSON.stringify(teams));
+}
+
 function isAdmin(){
-  let code = prompt("Enter Admin Code:");
+  let code=prompt("Enter Admin Code:");
   return admins.includes(code);
 }
 
-/* LOAD TEAMS */
 function loadTeams(){
   let a=document.getElementById("teamA");
   let b=document.getElementById("teamB");
 
   Object.keys(teams).forEach(t=>{
-    a.innerHTML += `<option>${t}</option>`;
-    b.innerHTML += `<option>${t}</option>`;
+    a.innerHTML+=`<option>${t}</option>`;
+    b.innerHTML+=`<option>${t}</option>`;
   });
 }
 
-/* RENDER TABLE */
 function render(){
   let tbody=document.querySelector("#table tbody");
   tbody.innerHTML="";
@@ -158,7 +138,7 @@ function render(){
   Object.keys(teams).forEach(t=>{
     let d=teams[t];
 
-    tbody.innerHTML += `
+    tbody.innerHTML+=`
       <tr>
         <td>${t}</td>
         <td>${d.P}</td>
@@ -170,25 +150,20 @@ function render(){
       </tr>
     `;
   });
+
+  save();
 }
 
-/* ADD MATCH (ADMIN ONLY) */
 function addMatch(){
 
-  if(!isAdmin()){
-    alert("❌ Only Admin Can Submit Result");
-    return;
-  }
+  if(!isAdmin()) return alert("❌ Admin only");
 
   let a=document.getElementById("teamA").value;
   let b=document.getElementById("teamB").value;
   let sa=+document.getElementById("scoreA").value;
   let sb=+document.getElementById("scoreB").value;
 
-  if(a===b){
-    alert("Same team not allowed");
-    return;
-  }
+  if(a===b) return alert("Same team not allowed");
 
   teams[a].P++;
   teams[b].P++;
@@ -211,18 +186,15 @@ function addMatch(){
   }
 
   render();
-  alert("✅ Match Updated Successfully");
+  alert("✅ Updated & Saved");
 }
 
-/* RESET (ADMIN ONLY) */
 function resetData(){
 
-  if(!isAdmin()){
-    alert("❌ Only Admin Can Reset");
-    return;
-  }
+  if(!isAdmin()) return alert("❌ Admin only");
 
-  if(confirm("⚠ Reset all data?")){
+  if(confirm("Reset all data?")){
+    localStorage.removeItem("teams");
     location.reload();
   }
 }
