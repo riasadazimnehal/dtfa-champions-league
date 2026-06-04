@@ -5,38 +5,28 @@
 <title>DTFA Tournaments</title>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial;
-}
-
 body{
+  margin:0;
+  font-family:Arial;
   background:linear-gradient(135deg,#0f172a,#111827);
   color:white;
-  min-height:100vh;
+  text-align:center;
 }
 
 /* HEADER */
-.header{
-  text-align:center;
-  padding:30px 10px;
-}
-
-.header h1{
+h1{
+  margin-top:30px;
   font-size:32px;
-  letter-spacing:2px;
 }
 
-.header p{
+p{
   opacity:0.7;
 }
 
-/* TOURNAMENT GRID */
+/* CONTAINER */
 .container{
   width:85%;
-  margin:40px auto;
+  margin:50px auto;
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:20px;
@@ -44,11 +34,10 @@ body{
 
 /* CARD */
 .card{
+  padding:25px;
   background:rgba(255,255,255,0.06);
   border:1px solid rgba(255,255,255,0.15);
   border-radius:15px;
-  padding:25px;
-  text-align:center;
   cursor:pointer;
   transition:0.3s;
   backdrop-filter:blur(10px);
@@ -76,23 +65,12 @@ body{
   background:#22c55e;
 }
 
-/* LOCKED */
 .lock{
   background:#facc15;
   color:black;
 }
 
-/* BACK */
-.back{
-  display:block;
-  text-align:center;
-  margin:30px;
-  color:white;
-  opacity:0.7;
-  text-decoration:none;
-}
-
-/* ====== COMING SOON SCREEN ====== */
+/* COMING SOON SCREEN */
 #coming{
   display:none;
   position:fixed;
@@ -104,46 +82,31 @@ body{
   justify-content:center;
   align-items:center;
   flex-direction:column;
-  z-index:999;
-  overflow:hidden;
 }
 
-/* neon text */
 .neon{
   font-size:50px;
   color:#22c55e;
-  text-shadow:
-    0 0 5px #22c55e,
-    0 0 15px #22c55e,
-    0 0 30px #22c55e;
+  text-shadow:0 0 10px #22c55e,0 0 30px #22c55e;
   animation:glow 1.5s infinite alternate;
 }
 
 @keyframes glow{
-  from{transform:scale(1); opacity:0.7;}
-  to{transform:scale(1.1); opacity:1;}
+  from{transform:scale(1);}
+  to{transform:scale(1.1);}
 }
 
 .sub{
   margin-top:10px;
   opacity:0.7;
-  letter-spacing:2px;
 }
 
-/* moving particles */
-.particle{
-  position:absolute;
-  width:6px;
-  height:6px;
-  background:#22c55e;
-  border-radius:50%;
-  box-shadow:0 0 10px #22c55e;
-  animation:float 6s linear infinite;
-}
-
-@keyframes float{
-  from{transform:translateY(100vh);}
-  to{transform:translateY(-10vh);}
+.back{
+  display:block;
+  margin:30px;
+  color:white;
+  opacity:0.7;
+  text-decoration:none;
 }
 </style>
 
@@ -151,10 +114,8 @@ body{
 
 <body>
 
-<div class="header">
-  <h1>🏆 DTFA TOURNAMENTS</h1>
-  <p>Select Tournament</p>
-</div>
+<h1>🏆 DTFA TOURNAMENTS</h1>
+<p>Select Tournament</p>
 
 <div class="container">
 
@@ -172,7 +133,7 @@ body{
 
 <a class="back" href="visit.html">⬅ Back to Menu</a>
 
-<!-- COMING SOON SCREEN -->
+<!-- COMING SOON -->
 <div id="coming">
   <div class="neon">COMING SOON</div>
   <div class="sub">DTFA PREMIER LEAGUE 2026</div>
@@ -186,18 +147,9 @@ function openChampions(){
 function comingSoon(){
   document.getElementById("coming").style.display="flex";
 
-  // particles generate
-  for(let i=0;i<30;i++){
-    let p = document.createElement("div");
-    p.className="particle";
-    p.style.left=Math.random()*100+"%";
-    p.style.animationDuration=(3+Math.random()*3)+"s";
-    document.getElementById("coming").appendChild(p);
-  }
-
   setTimeout(()=>{
     document.getElementById("coming").style.display="none";
-  },3000);
+  },2500);
 }
 </script>
 
