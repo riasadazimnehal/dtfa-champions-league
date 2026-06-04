@@ -59,7 +59,7 @@ body{
   overflow:hidden;
 }
 
-/* HOVER CARD */
+/* CARD HOVER */
 .team-btn:hover{
   transform:translateY(-10px) scale(1.06);
   background:rgba(34,197,94,0.10);
@@ -85,7 +85,7 @@ body{
   object-fit:cover;
 }
 
-/* FLOAT + GLOW */
+/* FLOAT + GLOW ANIMATION */
 @keyframes floatGlow{
   0%{
     transform:translateY(0) scale(1);
@@ -107,10 +107,12 @@ body{
 /* TEAM NAME */
 .name{
   margin-top:15px;
-  font-size:16px;
+  font-size:17px;
   font-weight:800;
   letter-spacing:2px;
   text-transform:uppercase;
+  color:#ffffff;
+  text-shadow:0 0 10px rgba(255,255,255,0.25);
 }
 
 /* SUB TEXT */
@@ -118,6 +120,11 @@ body{
   font-size:12px;
   opacity:0.7;
   margin-top:6px;
+}
+
+/* HOVER TEXT GLOW */
+.team-btn:hover .name{
+  text-shadow:0 0 18px rgba(255,255,255,0.6);
 }
 
 /* SHINE EFFECT */
@@ -136,7 +143,7 @@ body{
   left:100%;
 }
 
-/* BACK */
+/* BACK BUTTON */
 .back{
   display:block;
   text-align:center;
@@ -145,6 +152,7 @@ body{
   opacity:0.6;
   text-decoration:none;
 }
+
 .back:hover{
   opacity:1;
 }
