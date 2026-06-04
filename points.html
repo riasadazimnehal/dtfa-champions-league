@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>DTFA Point Table</title>
+<title>DTFA Live Point System</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
@@ -20,7 +20,7 @@ body{
   color:white;
 
   background:
-  linear-gradient(rgba(0,0,0,0.88), rgba(0,0,0,0.95)),
+  linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.95)),
   url('https://images.unsplash.com/photo-1522778034537-20a2486be803?auto=format&fit=crop&w=1920&q=80');
 
   background-size:cover;
@@ -28,226 +28,207 @@ body{
   background-attachment:fixed;
 }
 
-.header{
+h2{
   text-align:center;
-  padding:35px 10px;
-}
-
-.header h1{
-  font-size:40px;
-  font-weight:900;
-  letter-spacing:2px;
+  margin:20px 0;
 }
 
 /* TABLE */
 table{
   width:85%;
-  margin:20px auto;
+  margin:auto;
   border-collapse:collapse;
-
   background:rgba(255,255,255,0.06);
-  backdrop-filter:blur(15px);
+  backdrop-filter:blur(10px);
   border-radius:15px;
   overflow:hidden;
 }
 
 th,td{
-  padding:14px;
+  padding:12px;
   text-align:center;
   border-bottom:1px solid rgba(255,255,255,0.1);
 }
 
 th{
   background:rgba(34,197,94,0.25);
-  font-weight:800;
 }
 
-/* BUTTONS */
-.btn{
-  display:block;
-  margin:12px auto;
-  padding:12px 18px;
-  border:none;
-  border-radius:25px;
-  background:#22c55e;
-  color:white;
-  font-weight:bold;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-.btn:hover{
-  transform:scale(1.05);
-}
-
-.reset{
-  background:#ef4444;
-}
-
-/* ADMIN PANEL */
-#adminPanel{
-  display:none;
+/* PANEL */
+.panel{
   width:85%;
   margin:20px auto;
   padding:20px;
-
-  background:rgba(255,255,255,0.06);
+  background:rgba(255,255,255,0.05);
   border-radius:15px;
   border:1px solid rgba(255,255,255,0.2);
 }
 
-input{
+select,input{
   padding:10px;
   margin:5px;
   border:none;
   border-radius:8px;
-  width:140px;
 }
 
-.save{
-  background:#facc15;
+button{
+  padding:10px 15px;
   border:none;
-  padding:10px;
   border-radius:10px;
-  font-weight:bold;
   cursor:pointer;
+  font-weight:bold;
+  margin:5px;
 }
 
-.back{
-  display:block;
-  text-align:center;
-  margin:25px;
-  color:white;
-  opacity:0.6;
-  text-decoration:none;
-}
-
-.back:hover{opacity:1;}
+.submit{background:#22c55e;color:white;}
+.reset{background:#ef4444;color:white;}
 
 </style>
 </head>
 
 <body>
 
-<div class="header">
-  <h1>🏆 DTFA POINT TABLE</h1>
-</div>
+<h2>🏆 DTFA LIVE POINT TABLE</h2>
 
-<!-- TABLE -->
-<table>
-  <tr>
-    <th>Team</th>
-    <th>Played</th>
-    <th>Won</th>
-    <th>Draw</th>
-    <th>Lost</th>
-    <th>G/D</th>
-    <th>Points</th>
-  </tr>
-
-  <tr>
-    <td>Incognito FC</td>
-    <td>4</td>
-    <td>3</td>
-    <td>1</td>
-    <td>0</td>
-    <td>+6</td>
-    <td>10</td>
-  </tr>
-
-  <tr>
-    <td>Team B</td>
-    <td>4</td>
-    <td>2</td>
-    <td>1</td>
-    <td>1</td>
-    <td>+1</td>
-    <td>7</td>
-  </tr>
-
-  <tr>
-    <td>Team C</td>
-    <td>4</td>
-    <td>1</td>
-    <td>1</td>
-    <td>2</td>
-    <td>-2</td>
-    <td>4</td>
-  </tr>
-
-  <tr>
-    <td>Team D</td>
-    <td>4</td>
-    <td>0</td>
-    <td>1</td>
-    <td>3</td>
-    <td>-5</td>
-    <td>1</td>
-  </tr>
-
+<table id="table">
+<thead>
+<tr>
+<th>Team</th>
+<th>P</th>
+<th>W</th>
+<th>D</th>
+<th>L</th>
+<th>GD</th>
+<th>Pts</th>
+</tr>
+</thead>
+<tbody></tbody>
 </table>
 
-<!-- BUTTONS -->
-<button class="btn" onclick="checkAccess()">🔴 Admin Panel</button>
-<button class="btn reset" onclick="resetTable()">♻ Reset Table</button>
+<div class="panel">
 
-<!-- ADMIN PANEL -->
-<div id="adminPanel">
+<h3>⚽ Add Match Result</h3>
 
-  <h3>⚽ Admin Update Panel</h3>
+<select id="teamA"></select>
+<select id="teamB"></select>
 
-  <input type="text" placeholder="Team Name">
-  <input type="number" placeholder="Played">
-  <input type="number" placeholder="Won">
-  <input type="number" placeholder="Draw">
-  <input type="number" placeholder="Lost">
-  <input type="text" placeholder="G/D">
-  <input type="number" placeholder="Points">
+<input id="scoreA" type="number" placeholder="Score A">
+<input id="scoreB" type="number" placeholder="Score B">
 
-  <button class="save">Save Update</button>
+<br>
+
+<button class="submit" onclick="addMatch()">Submit Result</button>
+<button class="reset" onclick="resetData()">Reset</button>
 
 </div>
-
-<a class="back" href="visit.html">⬅ Back</a>
 
 <script>
 
-const admins = ["834", "299"];
+const admins = ["834","299"];
 
-/* ADMIN ACCESS */
-function checkAccess(){
+let teams = {
+  "Incognito FC":{P:0,W:0,D:0,L:0,GD:0,Pts:0},
+  "Team B":{P:0,W:0,D:0,L:0,GD:0,Pts:0},
+  "Team C":{P:0,W:0,D:0,L:0,GD:0,Pts:0},
+  "Team D":{P:0,W:0,D:0,L:0,GD:0,Pts:0}
+};
 
-  let user = prompt("Enter Admin Code:");
+/* ADMIN CHECK */
+function isAdmin(){
+  let code = prompt("Enter Admin Code:");
+  return admins.includes(code);
+}
 
-  if(admins.includes(user)){
+/* LOAD TEAMS */
+function loadTeams(){
+  let a=document.getElementById("teamA");
+  let b=document.getElementById("teamB");
 
-    localStorage.setItem("role","admin");
-    document.getElementById("adminPanel").style.display = "block";
+  Object.keys(teams).forEach(t=>{
+    a.innerHTML += `<option>${t}</option>`;
+    b.innerHTML += `<option>${t}</option>`;
+  });
+}
 
-    alert("✅ Admin Access Granted");
+/* RENDER TABLE */
+function render(){
+  let tbody=document.querySelector("#table tbody");
+  tbody.innerHTML="";
 
-  } else {
-    alert("❌ Access Denied");
+  Object.keys(teams).forEach(t=>{
+    let d=teams[t];
+
+    tbody.innerHTML += `
+      <tr>
+        <td>${t}</td>
+        <td>${d.P}</td>
+        <td>${d.W}</td>
+        <td>${d.D}</td>
+        <td>${d.L}</td>
+        <td>${d.GD}</td>
+        <td>${d.Pts}</td>
+      </tr>
+    `;
+  });
+}
+
+/* ADD MATCH (ADMIN ONLY) */
+function addMatch(){
+
+  if(!isAdmin()){
+    alert("❌ Only Admin Can Submit Result");
+    return;
   }
+
+  let a=document.getElementById("teamA").value;
+  let b=document.getElementById("teamB").value;
+  let sa=+document.getElementById("scoreA").value;
+  let sb=+document.getElementById("scoreB").value;
+
+  if(a===b){
+    alert("Same team not allowed");
+    return;
+  }
+
+  teams[a].P++;
+  teams[b].P++;
+
+  teams[a].GD += (sa-sb);
+  teams[b].GD += (sb-sa);
+
+  if(sa>sb){
+    teams[a].W++; teams[b].L++;
+    teams[a].Pts+=3;
+  }
+  else if(sa<sb){
+    teams[b].W++; teams[a].L++;
+    teams[b].Pts+=3;
+  }
+  else{
+    teams[a].D++; teams[b].D++;
+    teams[a].Pts+=1;
+    teams[b].Pts+=1;
+  }
+
+  render();
+  alert("✅ Match Updated Successfully");
 }
 
 /* RESET (ADMIN ONLY) */
-function resetTable(){
+function resetData(){
 
-  let user = prompt("Enter Admin Code to Reset:");
-
-  if(admins.includes(user)){
-
-    if(confirm("⚠ Are you sure to reset table?")){
-
-      alert("♻ Table Reset Done (Demo Mode)");
-      location.reload();
-    }
-
-  } else {
+  if(!isAdmin()){
     alert("❌ Only Admin Can Reset");
+    return;
+  }
+
+  if(confirm("⚠ Reset all data?")){
+    location.reload();
   }
 }
+
+loadTeams();
+render();
 
 </script>
 
