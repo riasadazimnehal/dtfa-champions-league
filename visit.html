@@ -1,21 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>DTFA Menu</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>DTFA Menu</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  height:100vh;
+  background: linear-gradient(135deg,#0f172a,#1e293b);
+  color:white;
+}
+
+h1{
+  text-align:center;
+  margin-top:40px;
+}
+
+/* GRID MENU */
+.menu{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  width:80%;
+  margin:60px auto;
+}
+
+/* CARDS */
+.card{
+  padding:30px;
+  text-align:center;
+  border-radius:15px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.2);
+  cursor:pointer;
+  transition:0.3s;
+  text-decoration:none;
+  color:white;
+}
+
+.card:hover{
+  transform:scale(1.05);
+  background:rgba(34,197,94,0.25);
+}
+
+.back{
+  display:block;
+  text-align:center;
+  margin-top:20px;
+  color:white;
+  opacity:0.7;
+  text-decoration:none;
+}
+</style>
+
 </head>
+
 <body>
 
-<h1>⚽ DTFA Menu</h1>
+<h1>⚽ DTFA MAIN MENU</h1>
 
-<a class="btn" href="champions.html">🏆 Tournaments</a>
-<a class="btn" href="matches.html">📅 Match Schedule & Results</a>
-<a class="btn" href="points.html">📊 Point Table</a>
-<a class="btn" href="about.html">ℹ️ About Us</a>
+<div class="menu">
 
-<br><br>
+  <a class="card" href="champions.html">🏆 Tournaments</a>
 
-<a class="btn" href="index.html">⬅ Back</a>
+  <a class="card" href="matches.html">📅 Match Schedule & Results</a>
+
+  <a class="card" href="points.html">📊 Point Table</a>
+
+  <a class="card" href="about.html">ℹ️ About Us</a>
+
+</div>
+
+<a class="back" href="index.html">⬅ Back</a>
 
 </body>
 </html>
