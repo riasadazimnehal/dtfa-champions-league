@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>DTFA Persistent Point System</title>
+<title>DTFA Live Point System</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
@@ -26,6 +26,8 @@ table{
   border-collapse:collapse;
   background:rgba(255,255,255,.06);
   backdrop-filter:blur(10px);
+  border-radius:10px;
+  overflow:hidden;
 }
 
 th,td{
@@ -86,7 +88,7 @@ button{
 
 <div class="panel">
 
-<h3>⚽ Add Match Result</h3>
+<h3>⚽ Add Match Result (ADMIN ONLY)</h3>
 
 <select id="teamA"></select>
 <select id="teamB"></select>
@@ -117,7 +119,7 @@ function save(){
 }
 
 function isAdmin(){
-  let code=prompt("Enter Admin Code:");
+  let code = prompt("Enter Admin Code:");
   return admins.includes(code);
 }
 
@@ -160,10 +162,12 @@ function addMatch(){
 
   let a=document.getElementById("teamA").value;
   let b=document.getElementById("teamB").value;
-  let sa=+document.getElementById("scoreA").value;
-  let sb=+document.getElementById("scoreB").value;
+  let sa=parseInt(document.getElementById("scoreA").value);
+  let sb=parseInt(document.getElementById("scoreB").value);
 
   if(a===b) return alert("Same team not allowed");
+
+  if(isNaN(sa) || isNaN(sb)) return alert("Enter scores");
 
   teams[a].P++;
   teams[b].P++;
@@ -186,7 +190,7 @@ function addMatch(){
   }
 
   render();
-  alert("✅ Updated & Saved");
+  alert("✅ Updated Successfully");
 }
 
 function resetData(){
