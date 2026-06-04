@@ -19,7 +19,6 @@ body{
   color:white;
   min-height:100vh;
 
-  /* CHAMPIONS LEAGUE STADIUM VIBE */
   background:
   linear-gradient(rgba(0,0,0,0.88), rgba(0,0,0,0.94)),
   url('https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=1920&q=80');
@@ -29,7 +28,6 @@ body{
   background-attachment:fixed;
 }
 
-/* LIGHT GLOW */
 body::before{
   content:"";
   position:fixed;
@@ -58,11 +56,6 @@ body::before{
 .header h1{
   font-size:40px;
   font-weight:900;
-  letter-spacing:2px;
-}
-
-.header p{
-  opacity:0.7;
 }
 
 /* TABS */
@@ -77,10 +70,8 @@ body::before{
 .tab{
   padding:10px 22px;
   border-radius:25px;
-
   background:rgba(255,255,255,0.06);
   border:1px solid rgba(255,255,255,0.15);
-
   cursor:pointer;
   transition:0.3s;
   font-weight:600;
@@ -88,7 +79,6 @@ body::before{
 
 .tab:hover{
   background:#22c55e;
-  box-shadow:0 0 20px rgba(34,197,94,0.3);
   transform:scale(1.05);
 }
 
@@ -108,11 +98,9 @@ body::before{
   background:rgba(255,255,255,0.06);
   border:1px solid rgba(255,255,255,0.15);
   backdrop-filter:blur(14px);
-
   border-radius:18px;
   padding:22px;
   margin-bottom:18px;
-
   transition:0.4s;
   position:relative;
   overflow:hidden;
@@ -121,23 +109,6 @@ body::before{
 .card:hover{
   transform:translateY(-8px) scale(1.02);
   border-color:#22c55e;
-  box-shadow:0 0 35px rgba(34,197,94,0.2);
-}
-
-/* SHINE EFFECT */
-.card::before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:-120%;
-  width:100%;
-  height:100%;
-  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.1),transparent);
-  transition:0.8s;
-}
-
-.card:hover::before{
-  left:120%;
 }
 
 /* MATCH */
@@ -150,7 +121,6 @@ body::before{
 
 .team{
   font-weight:800;
-  letter-spacing:1px;
 }
 
 .score{
@@ -169,29 +139,12 @@ body::before{
   font-weight:700;
 }
 
-/* LIVE */
-.live{
-  background:red;
-  animation:blink 1s infinite;
-}
+.live{background:red; animation:blink 1s infinite;}
+.upcoming{background:#facc15; color:black;}
+.ft{background:#22c55e;}
 
-/* UPCOMING */
-.upcoming{
-  background:#facc15;
-  color:black;
-}
+@keyframes blink{50%{opacity:0.4;}}
 
-/* FT */
-.ft{
-  background:#22c55e;
-  color:white;
-}
-
-@keyframes blink{
-  50%{opacity:0.4;}
-}
-
-/* STATUS */
 .status{
   text-align:center;
   margin-top:10px;
@@ -199,7 +152,6 @@ body::before{
   opacity:0.8;
 }
 
-/* BACK */
 .back{
   display:block;
   text-align:center;
@@ -209,10 +161,6 @@ body::before{
   text-decoration:none;
 }
 
-.back:hover{
-  opacity:1;
-}
-
 </style>
 </head>
 
@@ -220,80 +168,101 @@ body::before{
 
 <div class="header">
   <h1>📅 DTFA MATCH CENTER</h1>
-  <p>Live • Upcoming • Results</p>
 </div>
 
 <!-- TABS -->
 <div class="tabs">
-  <div class="tab" onclick="show('live')">🔴 Live</div>
-  <div class="tab" onclick="show('upcoming')">🟡 Upcoming</div>
-  <div class="tab" onclick="show('results')">🟢 Results</div>
+  <div class="tab" onclick="show('live')">🔴 Live (2)</div>
+  <div class="tab" onclick="show('upcoming')">🟡 Upcoming (3)</div>
+  <div class="tab" onclick="show('results')">🟢 Results (2)</div>
 </div>
 
-<!-- LIVE -->
+<!-- LIVE (2 MATCH) -->
 <div id="live" class="section active">
 
   <div class="card">
     <div class="badge live">LIVE</div>
-
     <div class="match">
-      <div class="team">Team A</div>
+      <div class="team">Incognito FC</div>
       <div class="score">1 - 0</div>
       <div class="team">Team B</div>
     </div>
+    <div class="status">🔥 Live Match 1</div>
+  </div>
 
-    <div class="status">🔥 Match is LIVE now</div>
+  <div class="card">
+    <div class="badge live">LIVE</div>
+    <div class="match">
+      <div class="team">Team C</div>
+      <div class="score">0 - 0</div>
+      <div class="team">Team D</div>
+    </div>
+    <div class="status">🔥 Live Match 2</div>
   </div>
 
 </div>
 
-<!-- UPCOMING -->
+<!-- UPCOMING (3 MATCH) -->
 <div id="upcoming" class="section">
 
   <div class="card">
     <div class="badge upcoming">UPCOMING</div>
-
     <div class="match">
+      <div class="team">Incognito FC</div>
+      <div class="score">VS</div>
       <div class="team">Team C</div>
+    </div>
+    <div class="status">⏰ Match 3</div>
+  </div>
+
+  <div class="card">
+    <div class="badge upcoming">UPCOMING</div>
+    <div class="match">
+      <div class="team">Team B</div>
       <div class="score">VS</div>
       <div class="team">Team D</div>
     </div>
+    <div class="status">⏰ Match 4</div>
+  </div>
 
-    <div class="status">⏰ Starts at 6:00 PM</div>
+  <div class="card">
+    <div class="badge upcoming">UPCOMING</div>
+    <div class="match">
+      <div class="team">Team A</div>
+      <div class="score">VS</div>
+      <div class="team">Team B</div>
+    </div>
+    <div class="status">⏰ Match 5</div>
   </div>
 
 </div>
 
-<!-- RESULTS -->
+<!-- RESULTS (2 MATCH) -->
 <div id="results" class="section">
 
   <div class="card">
     <div class="badge ft">FT</div>
-
     <div class="match">
-      <div class="team">Team A</div>
+      <div class="team">Incognito FC</div>
       <div class="score">2 - 1</div>
-      <div class="team">Team B</div>
+      <div class="team">Team D</div>
     </div>
-
-    <div class="status">🏆 Team A Won</div>
+    <div class="status">🏆 Finished</div>
   </div>
 
   <div class="card">
     <div class="badge ft">FT</div>
-
     <div class="match">
       <div class="team">Team C</div>
       <div class="score">1 - 1</div>
-      <div class="team">Team D</div>
+      <div class="team">Team B</div>
     </div>
-
-    <div class="status">🤝 Draw Match</div>
+    <div class="status">🤝 Draw</div>
   </div>
 
 </div>
 
-<a class="back" href="visit.html">⬅ Back to Menu</a>
+<a class="back" href="visit.html">⬅ Back</a>
 
 <script>
 function show(id){
