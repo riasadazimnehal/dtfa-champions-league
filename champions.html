@@ -2,51 +2,148 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Champions League</title>
+<title>DTFA Tournaments</title>
 
 <style>
-body{
+*{
   margin:0;
+  padding:0;
+  box-sizing:border-box;
   font-family:Arial;
+}
+
+body{
   background:linear-gradient(135deg,#0f172a,#111827);
   color:white;
+  min-height:100vh;
+}
+
+/* HEADER */
+.header{
   text-align:center;
+  padding:30px 10px;
 }
 
-h1{
-  margin-top:40px;
+.header h1{
+  font-size:32px;
+  letter-spacing:2px;
 }
 
+.header p{
+  opacity:0.7;
+}
+
+/* TOURNAMENT GRID */
 .container{
+  width:85%;
+  margin:40px auto;
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:20px;
-  width:80%;
-  margin:50px auto;
 }
 
+/* CARD */
 .card{
-  padding:30px;
-  background:rgba(255,255,255,0.08);
-  border:1px solid rgba(255,255,255,0.2);
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.15);
   border-radius:15px;
-  text-decoration:none;
-  color:white;
-  font-size:20px;
+  padding:25px;
+  text-align:center;
+  cursor:pointer;
   transition:0.3s;
+  backdrop-filter:blur(10px);
 }
 
 .card:hover{
   transform:scale(1.05);
-  background:rgba(34,197,94,0.25);
+  background:rgba(34,197,94,0.15);
+  box-shadow:0 0 20px rgba(34,197,94,0.3);
 }
 
+/* TITLE */
+.title{
+  font-size:18px;
+  font-weight:bold;
+}
+
+/* BADGE */
+.badge{
+  display:inline-block;
+  margin-top:10px;
+  padding:5px 12px;
+  border-radius:20px;
+  font-size:12px;
+  background:#22c55e;
+}
+
+/* LOCKED */
+.lock{
+  background:#facc15;
+  color:black;
+}
+
+/* BACK */
 .back{
   display:block;
-  margin-top:20px;
+  text-align:center;
+  margin:30px;
   color:white;
   opacity:0.7;
   text-decoration:none;
+}
+
+/* ====== COMING SOON SCREEN ====== */
+#coming{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:black;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:999;
+  overflow:hidden;
+}
+
+/* neon text */
+.neon{
+  font-size:50px;
+  color:#22c55e;
+  text-shadow:
+    0 0 5px #22c55e,
+    0 0 15px #22c55e,
+    0 0 30px #22c55e;
+  animation:glow 1.5s infinite alternate;
+}
+
+@keyframes glow{
+  from{transform:scale(1); opacity:0.7;}
+  to{transform:scale(1.1); opacity:1;}
+}
+
+.sub{
+  margin-top:10px;
+  opacity:0.7;
+  letter-spacing:2px;
+}
+
+/* moving particles */
+.particle{
+  position:absolute;
+  width:6px;
+  height:6px;
+  background:#22c55e;
+  border-radius:50%;
+  box-shadow:0 0 10px #22c55e;
+  animation:float 6s linear infinite;
+}
+
+@keyframes float{
+  from{transform:translateY(100vh);}
+  to{transform:translateY(-10vh);}
 }
 </style>
 
@@ -54,18 +151,55 @@ h1{
 
 <body>
 
-<h1>🏆 Champions League</h1>
+<div class="header">
+  <h1>🏆 DTFA TOURNAMENTS</h1>
+  <p>Select Tournament</p>
+</div>
 
 <div class="container">
 
-  <a class="card" href="teamA.html">🔵 Team A</a>
-  <a class="card" href="teamB.html">🔴 Team B</a>
-  <a class="card" href="teamC.html">🟢 Team C</a>
-  <a class="card" href="teamD.html">🟡 Team D</a>
+  <div class="card" onclick="openChampions()">
+    <div class="title">DTFA Champions League</div>
+    <div class="badge">ACTIVE</div>
+  </div>
+
+  <div class="card" onclick="comingSoon()">
+    <div class="title">DTFA Premier League 2026</div>
+    <div class="badge lock">COMING SOON</div>
+  </div>
 
 </div>
 
-<a class="back" href="visit.html">⬅ Back</a>
+<a class="back" href="visit.html">⬅ Back to Menu</a>
+
+<!-- COMING SOON SCREEN -->
+<div id="coming">
+  <div class="neon">COMING SOON</div>
+  <div class="sub">DTFA PREMIER LEAGUE 2026</div>
+</div>
+
+<script>
+function openChampions(){
+  window.location.href = "champions.html";
+}
+
+function comingSoon(){
+  document.getElementById("coming").style.display="flex";
+
+  // particles generate
+  for(let i=0;i<30;i++){
+    let p = document.createElement("div");
+    p.className="particle";
+    p.style.left=Math.random()*100+"%";
+    p.style.animationDuration=(3+Math.random()*3)+"s";
+    document.getElementById("coming").appendChild(p);
+  }
+
+  setTimeout(()=>{
+    document.getElementById("coming").style.display="none";
+  },3000);
+}
+</script>
 
 </body>
 </html>
