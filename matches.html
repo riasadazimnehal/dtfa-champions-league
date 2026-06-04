@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>DTFA Matches</title>
+<title>DTFA Match Center</title>
 
 <style>
 *{
@@ -15,7 +15,6 @@
 body{
   background:linear-gradient(135deg,#0f172a,#111827);
   color:white;
-  min-height:100vh;
 }
 
 /* HEADER */
@@ -26,82 +25,101 @@ body{
 
 .header h1{
   font-size:32px;
-  letter-spacing:2px;
 }
 
 .header p{
   opacity:0.7;
-  margin-top:5px;
 }
 
-/* MATCH GRID */
-.container{
+/* TAB BUTTONS */
+.tabs{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  margin:20px 0;
+  flex-wrap:wrap;
+}
+
+.tab{
+  padding:10px 20px;
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:20px;
+  cursor:pointer;
+  background:rgba(255,255,255,0.05);
+  transition:0.3s;
+}
+
+.tab:hover{
+  background:#22c55e;
+}
+
+/* SECTION */
+.section{
+  display:none;
   width:85%;
-  margin:30px auto;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:20px;
+  margin:20px auto;
 }
 
-/* MATCH CARD */
+.active{
+  display:block;
+}
+
+/* CARD */
 .card{
   background:rgba(255,255,255,0.06);
   border:1px solid rgba(255,255,255,0.15);
   border-radius:15px;
   padding:20px;
+  margin-bottom:15px;
   backdrop-filter:blur(10px);
   transition:0.3s;
-  position:relative;
-  overflow:hidden;
 }
 
 .card:hover{
-  transform:scale(1.05);
+  transform:scale(1.03);
   background:rgba(34,197,94,0.15);
 }
 
-/* TEAM ROW */
+/* MATCH ROW */
 .match{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin:15px 0;
+  margin:10px 0;
 }
 
 .team{
-  font-size:18px;
   font-weight:bold;
 }
 
-/* SCORE */
 .score{
-  font-size:22px;
-  font-weight:bold;
+  font-size:20px;
   color:#22c55e;
+}
+
+/* BADGES */
+.badge{
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:20px;
+  font-size:12px;
+  margin-bottom:10px;
+}
+
+.live{background:red; animation:blink 1s infinite;}
+.upcoming{background:#facc15; color:black;}
+.ft{background:#22c55e;}
+
+@keyframes blink{
+  50%{opacity:0.4;}
 }
 
 /* STATUS */
 .status{
   text-align:center;
   margin-top:10px;
-  font-size:14px;
+  font-size:13px;
   opacity:0.8;
-}
-
-.win{color:#22c55e;}
-.draw{color:#facc15;}
-.loss{color:#ef4444;}
-
-/* BADGE */
-.badge{
-  position:absolute;
-  top:10px;
-  right:10px;
-  background:#22c55e;
-  padding:5px 10px;
-  border-radius:20px;
-  font-size:12px;
-  box-shadow:0 0 10px rgba(34,197,94,0.4);
 }
 
 /* BACK */
@@ -121,13 +139,55 @@ body{
 
 <div class="header">
   <h1>📅 DTFA MATCH CENTER</h1>
-  <p>Live Fixtures & Results</p>
+  <p>Live • Upcoming • Results</p>
 </div>
 
-<div class="container">
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab" onclick="show('live')">🔴 Live</div>
+  <div class="tab" onclick="show('upcoming')">🟡 Upcoming</div>
+  <div class="tab" onclick="show('results')">🟢 Results</div>
+</div>
+
+<!-- LIVE -->
+<div id="live" class="section active">
 
   <div class="card">
-    <div class="badge">FT</div>
+    <div class="badge live">LIVE</div>
+
+    <div class="match">
+      <div class="team">Team A</div>
+      <div class="score">1 - 0</div>
+      <div class="team">Team B</div>
+    </div>
+
+    <div class="status">🔥 Match is LIVE now</div>
+  </div>
+
+</div>
+
+<!-- UPCOMING -->
+<div id="upcoming" class="section">
+
+  <div class="card">
+    <div class="badge upcoming">UPCOMING</div>
+
+    <div class="match">
+      <div class="team">Team C</div>
+      <div class="score">VS</div>
+      <div class="team">Team D</div>
+    </div>
+
+    <div class="status">⏰ Starts at 6:00 PM</div>
+  </div>
+
+</div>
+
+<!-- RESULTS -->
+<div id="results" class="section">
+
+  <div class="card">
+    <div class="badge ft">FT</div>
 
     <div class="match">
       <div class="team">Team A</div>
@@ -135,11 +195,11 @@ body{
       <div class="team">Team B</div>
     </div>
 
-    <div class="status win">Team A Won the Match</div>
+    <div class="status">🏆 Team A Won</div>
   </div>
 
   <div class="card">
-    <div class="badge">FT</div>
+    <div class="badge ft">FT</div>
 
     <div class="match">
       <div class="team">Team C</div>
@@ -147,48 +207,19 @@ body{
       <div class="team">Team D</div>
     </div>
 
-    <div class="status draw">Match Drawn</div>
-  </div>
-
-  <div class="card">
-    <div class="badge">FT</div>
-
-    <div class="match">
-      <div class="team">Team A</div>
-      <div class="score">0 - 3</div>
-      <div class="team">Team C</div>
-    </div>
-
-    <div class="status loss">Team A Lost</div>
-  </div>
-
-  <div class="card">
-    <div class="badge">FT</div>
-
-    <div class="match">
-      <div class="team">Team B</div>
-      <div class="score">2 - 2</div>
-      <div class="team">Team D</div>
-    </div>
-
-    <div class="status draw">Draw Match</div>
-  </div>
-
-  <div class="card">
-    <div class="badge">FT</div>
-
-    <div class="match">
-      <div class="team">Team A</div>
-      <div class="score">3 - 2</div>
-      <div class="team">Team D</div>
-    </div>
-
-    <div class="status win">Team A Won</div>
+    <div class="status">🤝 Draw Match</div>
   </div>
 
 </div>
 
 <a class="back" href="visit.html">⬅ Back to Menu</a>
+
+<script>
+function show(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+</script>
 
 </body>
 </html>
