@@ -2,125 +2,307 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>DTFA Point Table</title>
+<title>DTFA Champions League Live Table</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
+
 body{
   margin:0;
-  font-family:Arial;
-  background:linear-gradient(135deg,#0f172a,#111827);
+  font-family:'Montserrat',sans-serif;
   color:white;
+
+  /* CHAMPIONS LEAGUE VIBE BG */
+  background:
+  linear-gradient(rgba(0,0,0,0.88), rgba(0,0,0,0.94)),
+  url('https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1920&q=80');
+
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+}
+
+/* LIGHT EFFECT */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+
+  background:
+  radial-gradient(circle at 20% 20%, rgba(34,197,94,0.18), transparent 35%),
+  radial-gradient(circle at 80% 30%, rgba(59,130,246,0.18), transparent 35%),
+  radial-gradient(circle at 50% 80%, rgba(255,215,0,0.08), transparent 40%);
+
+  animation:glow 7s infinite alternate ease-in-out;
+}
+
+@keyframes glow{
+  from{transform:scale(1);}
+  to{transform:scale(1.1);}
 }
 
 /* HEADER */
-h1{
+.header{
   text-align:center;
-  margin-top:30px;
+  padding:40px 10px 10px;
+}
+
+.header h1{
+  font-size:42px;
+  font-weight:900;
+  letter-spacing:3px;
+}
+
+.header p{
+  opacity:0.7;
+}
+
+/* INPUT PANEL */
+.panel{
+  text-align:center;
+  margin:20px;
+}
+
+select, button{
+  padding:10px;
+  margin:5px;
+  border-radius:10px;
+  border:none;
+  font-weight:600;
+}
+
+button{
+  cursor:pointer;
+  background:#22c55e;
+  color:white;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 20px rgba(34,197,94,0.4);
 }
 
 /* TABLE */
 table{
-  width:85%;
-  margin:40px auto;
+  width:90%;
+  margin:30px auto;
   border-collapse:collapse;
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(10px);
-  border-radius:12px;
+
+  background:rgba(255,255,255,0.06);
+  backdrop-filter:blur(16px);
+
+  border-radius:18px;
   overflow:hidden;
 }
 
-th,td{
-  padding:15px;
+th, td{
+  padding:14px;
   text-align:center;
   border-bottom:1px solid rgba(255,255,255,0.1);
 }
 
 th{
   background:rgba(34,197,94,0.2);
+  font-size:13px;
+  letter-spacing:1px;
 }
 
-/* ROW HOVER */
+/* TOP 3 GLOW */
+tr.top1{
+  color:#facc15;
+  font-weight:900;
+}
+
+tr.top2{
+  color:#d1d5db;
+  font-weight:800;
+}
+
+tr.top3{
+  color:#f97316;
+  font-weight:800;
+}
+
 tr:hover{
-  background:rgba(34,197,94,0.1);
+  background:rgba(255,255,255,0.05);
 }
 
-/* RANK COLORS */
-.gold{color:#facc15; font-weight:bold;}
-.silver{color:#c0c0c0; font-weight:bold;}
-.bronze{color:#cd7f32; font-weight:bold;}
-
-/* BACK */
-.back{
-  display:block;
+/* TITLE BADGE */
+.badge{
   text-align:center;
-  margin:30px;
-  color:white;
-  opacity:0.7;
-  text-decoration:none;
+  font-size:50px;
+  padding-top:20px;
 }
-</style>
 
+</style>
 </head>
 
 <body>
 
-<h1>📊 DTFA POINT TABLE</h1>
+<div class="badge">🏆</div>
 
+<div class="header">
+  <h1>DTFA CHAMPIONS LEAGUE</h1>
+  <p>Live Standings • Auto Update System</p>
+</div>
+
+<!-- MATCH PANEL -->
+<div class="panel">
+
+<select id="teamA">
+  <option>Incognito FC</option>
+  <option>Team B</option>
+  <option>Team C</option>
+  <option>Team D</option>
+</select>
+
+VS
+
+<select id="teamB">
+  <option>Team B</option>
+  <option>Team C</option>
+  <option>Team D</option>
+  <option>Incognito FC</option>
+</select>
+
+<br>
+
+<button onclick="win('A')">A Win (+3)</button>
+<button onclick="win('B')">B Win (+3)</button>
+<button onclick="draw()">DRAW (+1/+1)</button>
+<button onclick="reset()">RESET</button>
+
+</div>
+
+<!-- TABLE -->
 <table>
-
+<thead>
 <tr>
-  <th>Rank</th>
   <th>Team</th>
-  <th>Played</th>
-  <th>Won</th>
-  <th>Draw</th>
-  <th>Lost</th>
-  <th>Points</th>
+  <th>PTS</th>
+  <th>W</th>
+  <th>D</th>
+  <th>L</th>
+  <th>GD</th>
 </tr>
+</thead>
 
-<tr>
-  <td class="gold">🥇 1</td>
-  <td>Team C</td>
-  <td>3</td>
-  <td>2</td>
-  <td>1</td>
-  <td>0</td>
-  <td>7</td>
-</tr>
-
-<tr>
-  <td class="silver">🥈 2</td>
-  <td>Team A</td>
-  <td>3</td>
-  <td>2</td>
-  <td>0</td>
-  <td>1</td>
-  <td>6</td>
-</tr>
-
-<tr>
-  <td class="bronze">🥉 3</td>
-  <td>Team D</td>
-  <td>3</td>
-  <td>0</td>
-  <td>2</td>
-  <td>1</td>
-  <td>2</td>
-</tr>
-
-<tr>
-  <td>4</td>
-  <td>Team B</td>
-  <td>3</td>
-  <td>0</td>
-  <td>1</td>
-  <td>2</td>
-  <td>1</td>
-</tr>
-
+<tbody id="tableBody"></tbody>
 </table>
 
-<a class="back" href="visit.html">⬅ Back to Menu</a>
+<script>
+
+let teams = JSON.parse(localStorage.getItem("ucl_dtfa")) || {
+  "Incognito FC": {pts:0,w:0,d:0,l:0,gd:0},
+  "Team B": {pts:0,w:0,d:0,l:0,gd:0},
+  "Team C": {pts:0,w:0,d:0,l:0,gd:0},
+  "Team D": {pts:0,w:0,d:0,l:0,gd:0}
+};
+
+function save(){
+  localStorage.setItem("ucl_dtfa", JSON.stringify(teams));
+  render();
+}
+
+function win(side){
+
+  let A = document.getElementById("teamA").value;
+  let B = document.getElementById("teamB").value;
+
+  if(A === B){
+    alert("Same team not allowed!");
+    return;
+  }
+
+  if(side === "A"){
+    teams[A].w++;
+    teams[A].pts += 3;
+    teams[A].gd += 1;
+
+    teams[B].l++;
+    teams[B].gd -= 1;
+  }
+
+  if(side === "B"){
+    teams[B].w++;
+    teams[B].pts += 3;
+    teams[B].gd += 1;
+
+    teams[A].l++;
+    teams[A].gd -= 1;
+  }
+
+  save();
+}
+
+function draw(){
+
+  let A = document.getElementById("teamA").value;
+  let B = document.getElementById("teamB").value;
+
+  if(A === B){
+    alert("Same team not allowed!");
+    return;
+  }
+
+  teams[A].d++;
+  teams[B].d++;
+
+  teams[A].pts += 1;
+  teams[B].pts += 1;
+
+  save();
+}
+
+function reset(){
+  localStorage.removeItem("ucl_dtfa");
+
+  teams = {
+    "Incognito FC": {pts:0,w:0,d:0,l:0,gd:0},
+    "Team B": {pts:0,w:0,d:0,l:0,gd:0},
+    "Team C": {pts:0,w:0,d:0,l:0,gd:0},
+    "Team D": {pts:0,w:0,d:0,l:0,gd:0}
+  };
+
+  save();
+}
+
+function render(){
+
+  let body = document.getElementById("tableBody");
+  body.innerHTML = "";
+
+  let sorted = Object.entries(teams)
+    .sort((a,b)=>b[1].pts - a[1].pts);
+
+  sorted.forEach(([name,data],index)=>{
+
+    let cls = "";
+    if(index===0) cls="top1";
+    if(index===1) cls="top2";
+    if(index===2) cls="top3";
+
+    body.innerHTML += `
+      <tr class="${cls}">
+        <td>${name}</td>
+        <td>${data.pts}</td>
+        <td>${data.w}</td>
+        <td>${data.d}</td>
+        <td>${data.l}</td>
+        <td>${data.gd}</td>
+      </tr>
+    `;
+
+  });
+
+}
+
+render();
+
+</script>
 
 </body>
 </html>
