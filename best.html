@@ -5,201 +5,151 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Best of the Bests</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
 
 <style>
 
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Montserrat',sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Montserrat;
 }
 
 body{
-  min-height:100vh;
-  color:white;
+color:white;
+background:
+radial-gradient(circle at 20% 20%, rgba(255,215,0,.08), transparent 40%),
+radial-gradient(circle at 80% 30%, rgba(34,197,94,.08), transparent 40%),
+linear-gradient(rgba(0,0,0,.92),rgba(0,0,0,.97)),
+url('https://img.allfootballapp.com/www/M00/10/42/720x-/-/-/rB8CLFuWTuCAWpVWAASUD3B6ZMM699.jpg.webp');
 
-  background:
-  linear-gradient(rgba(0,0,0,0.88), rgba(0,0,0,0.95)),
-  url('https://img.allfootballapp.com/www/M00/10/42/720x-/-/-/rB8CLFuWTuCAWpVWAASUD3B6ZMM699.jpg.webp');
-
-  background-size:cover;
-  background-position:center;
-
-  overflow-x:hidden;
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
 }
 
 /* HEADER */
 .header{
-  text-align:center;
-  padding:30px 10px;
+text-align:center;
+padding:40px 15px;
 }
 
 .header h1{
-  font-size:40px;
-  font-weight:900;
+font-size:42px;
+font-weight:900;
+color:#facc15;
+text-shadow:0 0 20px rgba(255,215,0,.2);
 }
 
-/* WRAPPER */
-.wrapper{
-  width:100%;
-  min-height:75vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  position:relative;
+.header p{
+opacity:.7;
+margin-top:6px;
 }
 
-/* CAROUSEL */
-.carousel{
-  display:flex;
-  gap:40px;
-  transition:0.7s ease;
-  align-items:center;
+/* CONTAINER */
+.container{
+width:92%;
+margin:auto;
+padding-bottom:60px;
+display:flex;
+flex-direction:column;
+gap:20px;
 }
 
 /* CARD */
 .card{
-  width:650px;
-  height:320px;
+display:flex;
+gap:20px;
 
-  display:flex;
-  gap:25px;
+background:rgba(255,255,255,.06);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.12);
+border-radius:18px;
 
-  background:rgba(255,255,255,0.06);
-  border:1px solid rgba(255,255,255,0.15);
-  backdrop-filter:blur(15px);
-
-  border-radius:20px;
-  padding:20px;
-
-  opacity:0.4;
-  transform:scale(0.85);
-  transition:0.6s;
+overflow:hidden;
+transition:.3s;
 }
 
-/* ACTIVE */
-.card.active{
-  opacity:1;
-  transform:scale(1);
-  border-color:#facc15;
-  box-shadow:0 0 60px rgba(255,215,0,0.35);
-  z-index:5;
+.card:hover{
+transform:scale(1.01);
+border-color:#facc15;
+box-shadow:0 0 40px rgba(255,215,0,.15);
 }
 
-/* IMAGE */
-.img{
-  width:45%;
-  height:100%;
-  border-radius:15px;
-  overflow:hidden;
+/* LEFT IMAGE */
+.left{
+width:240px;
+min-width:240px;
 }
 
-.img img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.left img{
+width:100%;
+height:100%;
+object-fit:cover;
 }
 
-/* INFO */
-.info{
-  width:55%;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
+/* RIGHT */
+.right{
+flex:1;
+padding:18px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+gap:8px;
 }
 
-/* TEXT */
-.role{font-size:13px; opacity:0.8;}
-.name{font-size:26px; font-weight:900;}
-.team{font-size:13px; opacity:0.7;}
+.role{
+display:inline-block;
+padding:5px 12px;
+background:#facc15;
+color:black;
+font-weight:900;
+border-radius:20px;
+font-size:12px;
+width:max-content;
+}
 
+.name{
+font-size:26px;
+font-weight:900;
+}
+
+.team{
+opacity:.7;
+font-size:13px;
+}
+
+/* STATS */
 .stats{
-  margin-top:15px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin-top:10px;
 }
 
 .stat{
-  font-size:12px;
-  padding:6px 12px;
-  border-radius:20px;
-  background:rgba(255,215,0,0.12);
-  border:1px solid rgba(255,215,0,0.25);
+font-size:12px;
+padding:6px 10px;
+background:rgba(255,255,255,.06);
+border:1px solid rgba(255,255,255,.12);
+border-radius:10px;
 }
 
-/* BUTTONS */
-.btn{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  width:50px;
-  height:50px;
-  border-radius:50%;
-  border:none;
-  background:rgba(255,255,255,0.1);
-  color:white;
-  font-size:24px;
-  cursor:pointer;
-  z-index:10;
-}
-
-.left-btn{left:10px;}
-.right-btn{right:10px;}
-
-/* BACK */
-.back{
-  display:block;
-  text-align:center;
-  margin:20px;
-  opacity:0.6;
-  color:white;
-  text-decoration:none;
-}
-
-/* 🔥 MOBILE FIX */
+/* MOBILE */
 @media(max-width:768px){
 
-.wrapper{
-  padding:20px 0;
-}
-
-/* CARD FULL MOBILE */
 .card{
-  width:90vw;
-  height:auto;
-  flex-direction:column;
-  transform:scale(1);
+flex-direction:column;
 }
 
-.img{
-  width:100%;
-  height:220px;
-}
-
-.info{
-  width:100%;
-  padding-top:10px;
-}
-
-/* disable heavy center offset feel */
-.carousel{
-  gap:20px;
-  transform:none !important;
-  flex-direction:column;
-}
-
-/* buttons smaller */
-.btn{
-  width:40px;
-  height:40px;
-  font-size:18px;
+.left{
+width:100%;
+height:240px;
 }
 
 .header h1{
-  font-size:26px;
+font-size:28px;
 }
 
 }
@@ -210,67 +160,80 @@ body{
 <body>
 
 <div class="header">
-  <h1>🏆 BEST OF THE BESTS</h1>
+<h1>🏆 BEST OF THE BESTS</h1>
+<p>Hall of Fame Level Recognition</p>
 </div>
 
-<div class="wrapper">
+<div class="container">
 
-  <button class="btn left-btn" onclick="move(-1)">❮</button>
+<!-- PLAYER 1 -->
+<div class="card">
 
-  <div class="carousel" id="carousel">
+<div class="left">
+<img src="nehal.jpg">
+</div>
 
-    <div class="card active">
-      <div class="img"><img src="nehal.jpg"></div>
-      <div class="info">
-        <div class="role">MVP 🔥</div>
-        <div class="name">NEHAL</div>
-        <div class="team">Incognito FC</div>
-        <div class="stats">
-          <div class="stat">Goals 25</div>
-          <div class="stat">Assists 17</div>
-        </div>
-      </div>
-    </div>
+<div class="right">
 
-    <div class="card">
-      <div class="img"><img src="https://i.pravatar.cc/500?img=3"></div>
-      <div class="info">
-        <div class="role">Best Forward</div>
-        <div class="name">Player FW</div>
-        <div class="team">Team C</div>
-        <div class="stats">
-          <div class="stat">Goals 12</div>
-        </div>
-      </div>
-    </div>
+<div class="role">MVP 2026</div>
+<div class="name">NEHAL</div>
+<div class="team">Incognito FC</div>
 
-  </div>
-
-  <button class="btn right-btn" onclick="move(1)">❯</button>
+<div class="stats">
+<div class="stat">⚽ 25 Goals</div>
+<div class="stat">🎯 17 Assists</div>
+<div class="stat">🔥 Tournament Star</div>
+</div>
 
 </div>
 
-<a class="back" href="visit.html">⬅ Back</a>
+</div>
 
-<script>
+<!-- PLAYER 2 -->
+<div class="card">
 
-let index = 0;
-const cards = document.querySelectorAll(".card");
+<div class="left">
+<img src="https://i.pravatar.cc/500?img=3">
+</div>
 
-function update(){
-  cards.forEach((c,i)=>{
-    c.classList.toggle("active", i === index);
-  });
-}
+<div class="right">
 
-function move(dir){
-  index += dir;
-  if(index < 0) index = 0;
-  if(index > cards.length - 1) index = cards.length - 1;
-  update();
-}
+<div class="role">BEST FORWARD</div>
+<div class="name">Player FW</div>
+<div class="team">Team C</div>
 
-</script>
+<div class="stats">
+<div class="stat">⚽ 12 Goals</div>
+<div class="stat">🔥 Key Player</div>
+</div>
+
+</div>
+
+</div>
+
+<!-- PLAYER 3 -->
+<div class="card">
+
+<div class="left">
+<img src="https://i.pravatar.cc/500?img=12">
+</div>
+
+<div class="right">
+
+<div class="role">BEST GK</div>
+<div class="name">Player GK</div>
+<div class="team">Defenders FC</div>
+
+<div class="stats">
+<div class="stat">🧤 8 Clean Sheets</div>
+<div class="stat">👑 Captain</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
 
 </body>
 </html>
