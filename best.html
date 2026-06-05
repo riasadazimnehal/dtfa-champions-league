@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Best of the Bests</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
@@ -25,13 +26,14 @@ body{
 
   background-size:cover;
   background-position:center;
-  overflow:hidden;
+
+  overflow-x:hidden;
 }
 
 /* HEADER */
 .header{
   text-align:center;
-  padding:35px 10px 10px;
+  padding:30px 10px;
 }
 
 .header h1{
@@ -42,14 +44,14 @@ body{
 /* WRAPPER */
 .wrapper{
   width:100%;
-  height:75vh;
+  min-height:75vh;
   display:flex;
   justify-content:center;
   align-items:center;
   position:relative;
 }
 
-/* CAROUSEL TRACK */
+/* CAROUSEL */
 .carousel{
   display:flex;
   gap:40px;
@@ -72,15 +74,15 @@ body{
   border-radius:20px;
   padding:20px;
 
-  opacity:0.3;
+  opacity:0.4;
   transform:scale(0.85);
   transition:0.6s;
 }
 
-/* CENTER ACTIVE */
+/* ACTIVE */
 .card.active{
   opacity:1;
-  transform:scale(1.15);
+  transform:scale(1);
   border-color:#facc15;
   box-shadow:0 0 60px rgba(255,215,0,0.35);
   z-index:5;
@@ -108,24 +110,11 @@ body{
   justify-content:center;
 }
 
-.role{
-  font-size:13px;
-  opacity:0.8;
-}
+/* TEXT */
+.role{font-size:13px; opacity:0.8;}
+.name{font-size:26px; font-weight:900;}
+.team{font-size:13px; opacity:0.7;}
 
-.name{
-  font-size:26px;
-  font-weight:900;
-  margin-top:5px;
-}
-
-.team{
-  font-size:13px;
-  opacity:0.7;
-  margin-top:4px;
-}
-
-/* STATS */
 .stats{
   margin-top:15px;
   display:flex;
@@ -137,7 +126,6 @@ body{
   font-size:12px;
   padding:6px 12px;
   border-radius:20px;
-
   background:rgba(255,215,0,0.12);
   border:1px solid rgba(255,215,0,0.25);
 }
@@ -147,38 +135,74 @@ body{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
-  width:55px;
-  height:55px;
+  width:50px;
+  height:50px;
   border-radius:50%;
-  border:1px solid rgba(255,255,255,0.2);
-  background:rgba(255,255,255,0.08);
+  border:none;
+  background:rgba(255,255,255,0.1);
   color:white;
-  font-size:28px;
+  font-size:24px;
   cursor:pointer;
-  backdrop-filter:blur(10px);
   z-index:10;
 }
 
-.btn:hover{
-  background:#facc15;
-  color:black;
-}
-
-.left-btn{left:25px;}
-.right-btn{right:25px;}
+.left-btn{left:10px;}
+.right-btn{right:10px;}
 
 /* BACK */
 .back{
-  position:absolute;
-  bottom:15px;
-  width:100%;
+  display:block;
   text-align:center;
-  color:white;
+  margin:20px;
   opacity:0.6;
+  color:white;
   text-decoration:none;
 }
 
-.back:hover{opacity:1;}
+/* 🔥 MOBILE FIX */
+@media(max-width:768px){
+
+.wrapper{
+  padding:20px 0;
+}
+
+/* CARD FULL MOBILE */
+.card{
+  width:90vw;
+  height:auto;
+  flex-direction:column;
+  transform:scale(1);
+}
+
+.img{
+  width:100%;
+  height:220px;
+}
+
+.info{
+  width:100%;
+  padding-top:10px;
+}
+
+/* disable heavy center offset feel */
+.carousel{
+  gap:20px;
+  transform:none !important;
+  flex-direction:column;
+}
+
+/* buttons smaller */
+.btn{
+  width:40px;
+  height:40px;
+  font-size:18px;
+}
+
+.header h1{
+  font-size:26px;
+}
+
+}
 
 </style>
 </head>
@@ -195,20 +219,19 @@ body{
 
   <div class="carousel" id="carousel">
 
-    <!-- MVP -->
     <div class="card active">
       <div class="img"><img src="nehal.jpg"></div>
       <div class="info">
         <div class="role">MVP 🔥</div>
         <div class="name">NEHAL</div>
-        <div class="team">Team INCOGNITO</div>
+        <div class="team">Incognito FC</div>
         <div class="stats">
-          <div class="stat">G/A 42</div>
+          <div class="stat">Goals 25</div>
+          <div class="stat">Assists 17</div>
         </div>
       </div>
     </div>
 
-    <!-- FORWARD -->
     <div class="card">
       <div class="img"><img src="https://i.pravatar.cc/500?img=3"></div>
       <div class="info">
@@ -217,20 +240,6 @@ body{
         <div class="team">Team C</div>
         <div class="stats">
           <div class="stat">Goals 12</div>
-       </div>
-      </div>
-    </div>
-
-    <!-- GK -->
-    <div class="card">
-      <div class="img"><img src="https://i.pravatar.cc/500?img=12"></div>
-      <div class="info">
-        <div class="role">Best GK</div>
-        <div class="name">Player GK</div>
-        <div class="team">Incognito FC</div>
-        <div class="stats">
-          <div class="stat">Saves 38</div>
-          <div class="stat">Clean Sheets 5</div>
         </div>
       </div>
     </div>
@@ -252,25 +261,14 @@ function update(){
   cards.forEach((c,i)=>{
     c.classList.toggle("active", i === index);
   });
-
-  const carousel = document.getElementById("carousel");
-
-  // CENTER FOCUS CALCULATION
-  const offset = (window.innerWidth / 2) - 325 - (index * 690);
-  carousel.style.transform = `translateX(${offset}px)`;
 }
 
 function move(dir){
   index += dir;
-
   if(index < 0) index = 0;
   if(index > cards.length - 1) index = cards.length - 1;
-
   update();
 }
-
-window.onload = update;
-window.onresize = update;
 
 </script>
 
