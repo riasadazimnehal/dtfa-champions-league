@@ -16,12 +16,12 @@
     font-family:'Montserrat',sans-serif;
 }
 
+/* FIXED BODY (SCROLL ENABLED) */
 body{
     min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    overflow:hidden;
+    display:block;            /* FIX: flex removed */
+    overflow-y:auto;          /* FIX: scroll enabled */
+    overflow-x:hidden;
 
     background:
     linear-gradient(
@@ -32,6 +32,13 @@ body{
 
     background-size:cover;
     background-position:center;
+}
+
+/* extra mobile safe scroll */
+html, body{
+    height:auto;
+    overflow-y:auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 /* Animated Lights */
@@ -46,6 +53,7 @@ body::before{
     radial-gradient(circle at 50% 90%,rgba(255,255,255,.05),transparent 40%);
 
     animation:lights 8s ease-in-out infinite alternate;
+    pointer-events:none;
 }
 
 @keyframes lights{
@@ -60,6 +68,8 @@ body::before{
     width:90%;
     max-width:1200px;
     text-align:center;
+    margin:auto;
+    padding:40px 0;
 }
 
 /* Logo */
@@ -210,7 +220,6 @@ body::before{
             <div class="card-sub">League Standings</div>
         </a>
 
-        <!-- BEST OF THE BESTS ADDED -->
         <a href="best.html" class="card">
             <div class="icon">👑</div>
             <div class="card-title">Best of the Bests</div>
@@ -221,16 +230,15 @@ body::before{
             <div class="icon">🏛️</div>
             <div class="card-title">Hall Of Fame</div>
             <div class="card-sub">DTFA Legends</div>
-         </a>
+        </a>
 
         <a href="about.html" class="card">
             <div class="icon">ℹ️</div>
             <div class="card-title">About Us</div>
             <div class="card-sub">Community & Management</div>
         </a>
-        
-        
-     </div>
+
+    </div>
 
 </div>
 
